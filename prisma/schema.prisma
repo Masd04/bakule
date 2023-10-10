@@ -21,7 +21,6 @@ model Community {
 }
 
 model Rating {
-    id          String    @id @default(cuid())
     userId      String
     communityId String
     value       Int       @default(0)
@@ -29,12 +28,12 @@ model Rating {
     user        User      @relation(fields: [userId], references: [id])
     community   Community @relation(fields: [communityId], references: [id])
 
+    @@id([userId, communityId])
     @@index([userId])
     @@index([communityId])
 }
 
 model Review {
-    id          String    @id @default(cuid())
     userId      String
     communityId String
     content     String    @db.Text
@@ -42,6 +41,7 @@ model Review {
     user        User      @relation(fields: [userId], references: [id])
     community   Community @relation(fields: [communityId], references: [id])
 
+    @@id([userId, communityId])
     @@index([userId])
     @@index([communityId])
 }
@@ -84,8 +84,10 @@ model User {
     image         String?
     accounts      Account[]
     sessions      Session[]
-    ratings       Rating[]
-    reviews       Review[]
+
+    // Non-Next Auth
+    ratings Rating[]
+    reviews Review[]
 }
 
 model VerificationToken {
