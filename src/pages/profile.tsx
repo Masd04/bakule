@@ -1,4 +1,4 @@
-import { NextPage } from "next"
+import type { NextPage } from "next"
 /* import { ProfileInfo } from "~/components/ProfileInfo"; */
 import type { User } from '../types/types';
 import useSWR from 'swr';

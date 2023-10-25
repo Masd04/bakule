@@ -1,4 +1,4 @@
-import { NextPage } from "next"
+import type { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
 import type { Community } from '../types/types';
