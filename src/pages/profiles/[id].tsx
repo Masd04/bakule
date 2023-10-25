@@ -1,9 +1,10 @@
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
-import styles from '../../styles/style.js'
+import styles from '../../styles/style.js';
 import { ssgHelper } from "~/server/api/ssgHelper";
-import { api } from "~/utils/api"
-import ErrorPage from "next/error"
+import { api } from "~/utils/api";
+import ErrorPage from "next/error";
+import Image from 'next/image';
 
 
 
@@ -14,7 +15,7 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     }) => {
      const { data: profile } = api.profile.getById.useQuery({ id })
 
-     if (profile == null || profile.name == null)
+     if (!profile?.name)
      return <ErrorPage statusCode={404} />
 
     return <>
@@ -27,7 +28,7 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <h1 className={`${styles.flexCenter}`}>{profile.name}</h1>
     <h1 className={`${styles.flexCenter}`}>{profile.email}</h1>
     <div className={`${styles.flexCenter}`}>
-    <img src={profile.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg' } alt="Profile image" />
+    <Image src={profile.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'} alt="Profile image" width={200} height={200} />
     </div>
 
     </div>
@@ -54,7 +55,7 @@ export async function getStaticProps(context: GetStaticPropsContext<{ id: string
     }
 
     const ssg = ssgHelper()
-    ssg.profile.getById.prefetch({ id })
+    await ssg.profile.getById.prefetch({ id })
     
     return {
         props: {
