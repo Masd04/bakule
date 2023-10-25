@@ -7,7 +7,10 @@ import useSWR from 'swr';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Profile: NextPage = () => {
-  const { data: users, error } = useSWR<User[]>('/api/profile', fetcher);
+  const response = useSWR<User[]>('/api/profile', fetcher);
+  const users = response.data;
+  const error = response.error;
+
 
     if (error) return <div>Failed to load users</div>;
     if (!users) return <div>Loading...</div>;

@@ -10,7 +10,10 @@ import type { Community } from '../types/types';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Communities: NextPage = () => {
-  const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
+  const response = useSWR<Community[]>('/api/communities', fetcher);
+  const communities = response.data;
+  const error = response.error;
+
 
     if (error) return <div>Failed to load communities</div>;
     if (!communities) return <div>Loading...</div>;
