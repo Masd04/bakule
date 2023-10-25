@@ -1,13 +1,13 @@
-import { type NextPage } from "next"
-/* import { ProfileInfo } from "~/components/ProfileInfo";
-import { User } from '../types/types'; */
+import { NextPage } from "next"
+/* import { ProfileInfo } from "~/components/ProfileInfo"; */
+import type { User } from '../types/types';
 import useSWR from 'swr';
 
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Profile: NextPage = () => {
-  const { data: users, error } = useSWR('/api/profile', fetcher);
+  const { data: users, error } = useSWR<User[]>('/api/profile', fetcher);
 
     if (error) return <div>Failed to load users</div>;
     if (!users) return <div>Loading...</div>;
