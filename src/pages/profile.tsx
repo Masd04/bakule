@@ -8,7 +8,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Profile: NextPage = () => {
   const response = useSWR<User[]>('/api/profile', fetcher);
-  const users = response.data;
+  const users: User[] | undefined = response.data;
   const error = response.error;
 
 

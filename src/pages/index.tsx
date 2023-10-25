@@ -11,7 +11,7 @@ const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const Communities: NextPage = () => {
   const response = useSWR<Community[]>('/api/communities', fetcher);
-  const communities = response.data;
+  const communities: Community[] | undefined = response.data;
   const error = response.error;
 
 
