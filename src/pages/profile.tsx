@@ -1,6 +1,6 @@
 import { type NextPage } from "next"
-import { ProfileInfo } from "~/components/ProfileInfo";
-import { User } from '../types/types';
+/* import { ProfileInfo } from "~/components/ProfileInfo";
+import { User } from '../types/types'; */
 import useSWR from 'swr';
 
 

@@ -1,7 +1,7 @@
 import { type NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
-import { Community } from '../types/types';
+import type { Community } from '../types/types';
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 

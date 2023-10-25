@@ -1,4 +1,4 @@
-import { User } from '../types/types';
+/* import type { User } from '../types/types';
 
 interface UserProps {
  user: User;
@@ -29,4 +29,4 @@ export function ProfileInfo({ user }: UserProps) {
     </div>
     </>
   
-  }
+  } */
