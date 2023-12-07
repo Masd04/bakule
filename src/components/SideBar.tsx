@@ -1,6 +1,7 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
+
 export function SideBar () {
 
     const session = useSession()
@@ -8,16 +9,16 @@ export function SideBar () {
 
     return (
     
-    <nav className="sticky top-0 px-4 py-4">
+    <nav id='nav' className="sticky top-0 px-4 py-4">
     
     
 
-    <ul className="flex flex-col items-start gap-2 whitespace-nowrap">
-        <li>
+    <ul className="flex flex-col items-center gap-2 whitespace-nowrap font-bold">
+        <li className="text-center">
             <Link href="/">Communities</Link>
         </li>
         <li>
-        <Link href="/profile">Profilemrtka</Link>
+        <Link href="/profile">ProfileOld</Link>
         </li>
         {user != null && ( 
         <li>
