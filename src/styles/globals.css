@@ -10,5 +10,10 @@
   }
 
 li:hover {
-    scale: 1.1;
+  scale: 1.1;
+}
+
+#card:hover {
+  scale: 1.015;
+  cursor: pointer;
 }

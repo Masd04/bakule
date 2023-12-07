@@ -20,23 +20,24 @@ const Communities: NextPage = () => {
     
   return (
   <>
-  <div className="mx-1">
+  <div className="bg-gray-100 pt-3">
 
-    <header className="sticky top-[4.78rem] z-10 border-b pt-1 mt-0">
+    <header className="sticky top-[4.78rem] z-10 pt-1 mt-0">
       
-      <h1 className="px-4 py-2 text-white bg-blue-700  text-lg font-bold text-center">Communities</h1>
+      <h1 className="px-4 py-2 text-black bg-gray-100 text-4xl font-bold text-center">Communities</h1>
 
       <div className="flex justify-center py-2 select-none bg-gray-100">
-        <input type="text" placeholder="search" className="bg-gray-300 rounded-full w-4rem text-center border-2 border-gray-400"/>
+        <input type="text" placeholder="search" className="bg-gray-300 rounded-full w-[14rem] text-center border-2 border-gray-400"/>
       </div>
 
     </header>
 
-    
-
+   
     {communities.map((community: Community) => (
                 <CommunityCard key={community.id} community={community} />
-    ))}    
+    ))} 
+   
+
   </div>
   </>
 
