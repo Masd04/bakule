@@ -22,7 +22,7 @@ export function SideBar () {
         </li>
         {user != null && ( 
         <li>
-            <Link href={`/profiles/${user.id}`}>Profile</Link>
+            <Link href={`/profile/${user.id}`}>Profile</Link>
         </li>
         )}
 

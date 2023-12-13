@@ -10,7 +10,7 @@ datasource db {
 
 model Community {
     id          String   @id @default(cuid())
-    name        String
+    name        String   @unique
     description String
     imageUrl    String?
     admin       String
@@ -23,10 +23,10 @@ model Community {
 model Rating {
     userId      String
     communityId String
-    value       Int       @default(0)
-    createdAt   DateTime  @default(now())
-    user        User      @relation(fields: [userId], references: [id])
-    community   Community @relation(fields: [communityId], references: [id])
+    value       Int        @default(0)
+    createdAt   DateTime   @default(now())
+    user        User?      @relation(fields: [userId], references: [id])
+    community   Community? @relation(fields: [communityId], references: [id])
 
     @@id([userId, communityId])
     @@index([userId])
@@ -36,10 +36,10 @@ model Rating {
 model Review {
     userId      String
     communityId String
-    content     String    @db.Text
-    createdAt   DateTime  @default(now())
-    user        User      @relation(fields: [userId], references: [id])
-    community   Community @relation(fields: [communityId], references: [id])
+    content     String     @db.Text
+    createdAt   DateTime   @default(now())
+    user        User?      @relation(fields: [userId], references: [id])
+    community   Community? @relation(fields: [communityId], references: [id])
 
     @@id([userId, communityId])
     @@index([userId])
