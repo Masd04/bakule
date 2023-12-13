@@ -1,12 +1,12 @@
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
-
 import { api } from "~/utils/api";
-
 import "~/styles/globals.css";
 import Head from "next/head";
 import { SideBar } from "~/components/SideBar";
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
 
 
 

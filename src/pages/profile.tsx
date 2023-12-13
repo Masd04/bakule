@@ -4,12 +4,12 @@ import type { User } from '../types/types';
 import useSWR from 'swr';
 
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+type FetcherResponse<T> = Promise<T>;
+
+const fetcher = <T,>(url: string): FetcherResponse<T> => fetch(url).then((res) => res.json());
 
 const Profile: NextPage = () => {
-  const response = useSWR<User[]>('/api/profile', fetcher);
-  const users: User[] | undefined = response.data;
-  const error = response.error;
+  const { data: users, error } = useSWR<User[]>('/api/profile', fetcher);
 
 
     if (error) return <div>Failed to load users</div>;

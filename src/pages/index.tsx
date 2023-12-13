@@ -3,9 +3,6 @@ import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
 import type { Community } from '../types/types';
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-
-
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
