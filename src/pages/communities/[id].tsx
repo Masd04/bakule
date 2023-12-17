@@ -1,14 +1,14 @@
-import type { NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import Image from 'next/image';
 import type { Community } from '../../types/types';
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());
 
 const CommunityPage: NextPage = () => {
   const router = useRouter();
-  const id = typeof router.query.id === 'string' ? router.query.id : undefined;
+  const id = Array.isArray(router.query.id) ? router.query.id[0] : router.query.id;
   const { data: community, error } = useSWR<Community>(id ? `/api/communities/${id}` : null, fetcher);
 
   if (error) return <div>Failed to load the community.</div>;

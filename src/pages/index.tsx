@@ -1,19 +1,18 @@
-import type { NextPage } from "next"
+import { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
-import type { Community } from '../types/types';
+import { Community } from '../types/types';
+import { error } from "console";
 
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());
 
 const Communities: NextPage = () => {
-  const response = useSWR<Community[]>('/api/communities', fetcher);
-  const communities: Community[] | undefined = response.data;
-  const error = response.error;
 
+  const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
-    if (error) return <div>Failed to load communities</div>;
-    if (!communities) return <div>Loading...</div>;
+  if (error) return <div>Failed to load users</div>;
+  if (!communities) return <div>Loading...</div>;
     
   return (
   <>
