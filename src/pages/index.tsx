@@ -1,13 +1,18 @@
-import { NextPage } from "next"
+import type { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
-import { Community } from '../types/types';
+import type { Community } from '../types/types';
 
 
-const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());
+const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
+  if (!res.ok) {
+    throw new Error('An error occurred while fetching the data.');
+  }
+  return res.json() as Promise<T>;
+});
 
 const Communities: NextPage = () => {
-
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
   if (error) return <div>Failed to load users</div>;

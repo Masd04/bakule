@@ -4,11 +4,16 @@ import type { User } from '../types/types';
 import useSWR from 'swr';
 
 
-type FetcherResponse<T> = Promise<T>;
+const fetcher = <T,>(url: string): Promise<T> => fetch(url).then((res) => {
+  if (!res.ok) {
+    throw new Error('An error occurred while fetching the data.');
+  }
+  return res.json() as Promise<T>;
+});
 
-const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());
 
 const Profile: NextPage = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: users, error } = useSWR<User[]>('/api/profile', fetcher);
 
 

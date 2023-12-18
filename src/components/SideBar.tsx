@@ -1,18 +1,28 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
-import { Session } from "next-auth";
 import { useRouter } from 'next/router';
 import Link from "next/link";
 import Image from 'next/image';
 import { close, menu  } from "../../public/img";
 
 
+// Extend the Session type with the user properties you expect to use
+interface ExtendedSession {
+    user: {
+      // Include the user properties here, e.g.:
+      id: string;
+      name: string;
+      // Add any other user properties you expect from the session
+    }
+  }
+
+
 
 export function SideBar () {
 
      // PROFILE
-     const { data: session } = useSession();
-     const user = session?.user as Session["user"] | undefined; 
+     const { data: session } = useSession() as { data: ExtendedSession };
+     const user = session?.user;
 
 
     // MOBILE NAV
@@ -60,8 +70,10 @@ export function SideBar () {
     <>
     <button ref={toggleButtonRef} className="md:hidden p-2 absolute top-2 left-2 z-20" onClick={toggleSidebar}>
          {isSidebarOpen ? (
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
              <Image src={close} alt="Close icon" width={36} height={36} />
          ) : (
+              // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
              <Image src={menu} alt="Menu icon" width={36} height={36} />
           )}
         </button>
