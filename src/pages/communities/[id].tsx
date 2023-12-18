@@ -6,10 +6,11 @@ import type { Community } from '../../types/types';
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());
 
+
 const CommunityPage: NextPage = () => {
   const router = useRouter();
   const id = Array.isArray(router.query.id) ? router.query.id[0] : router.query.id;
-  const { data: community, error } = useSWR<Community>(id ? `/api/communities/${id}` : null, fetcher);
+  const { data: community, error } = useSWR<Community>(typeof id === 'string' ? `/api/communities/${id}` : null, fetcher);
 
   if (error) return <div>Failed to load the community.</div>;
   if (!community) return <div>Loading...</div>;

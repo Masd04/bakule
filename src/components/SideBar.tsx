@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { signIn, signOut, useSession } from "next-auth/react";
+import { Session } from "next-auth";
 import { useRouter } from 'next/router';
 import Link from "next/link";
 import Image from 'next/image';
@@ -10,8 +11,8 @@ import { close, menu  } from "../../public/img";
 export function SideBar () {
 
      // PROFILE
-     const session = useSession();
-     const user = session.data?.user;
+     const { data: session } = useSession();
+     const user = session?.user as Session["user"] | undefined; 
 
 
     // MOBILE NAV

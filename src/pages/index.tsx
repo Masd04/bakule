@@ -2,7 +2,6 @@ import { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
 import { Community } from '../types/types';
-import { error } from "console";
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());

@@ -6,7 +6,7 @@ import useSWR from 'swr';
 
 type FetcherResponse<T> = Promise<T>;
 
-const fetcher = <T,>(url: string): FetcherResponse<T> => fetch(url).then((res) => res.json());
+const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => res.json());
 
 const Profile: NextPage = () => {
   const { data: users, error } = useSWR<User[]>('/api/profile', fetcher);
