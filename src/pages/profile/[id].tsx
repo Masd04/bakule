@@ -5,8 +5,7 @@ import { ssgHelper } from "~/server/api/ssgHelper";
 import { api } from "~/utils/api";
 import ErrorPage from "next/error";
 import Image from 'next/image';
-
-
+import  GoBack  from "~/components/GoBack";
 
 
 
@@ -23,13 +22,18 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <title>{`Profile ${profile.name}`}</title>
     </Head>
 
-    <div className={``}>
+    <div className={`container mx-auto px-6 py-2`}>
+
+    <GoBack />
+
+
     
     <h1 className={`${styles.flexCenter}`}>{profile.name}</h1>
     <h1 className={`${styles.flexCenter}`}>{profile.email}</h1>
     <div className={`${styles.flexCenter}`}>
     <Image src={profile.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'} alt="Profile image" width={200} height={200} />
     </div>
+
 
     </div>
 

@@ -68,7 +68,7 @@ export function SideBar () {
 
     return (
     <>
-    <button ref={toggleButtonRef} className="md:hidden p-2 absolute top-2 left-2 z-20" onClick={toggleSidebar}>
+    <button ref={toggleButtonRef} className="fixed md:hidden p-2 top-3.5 left-2 z-20" onClick={toggleSidebar}>
          {isSidebarOpen ? (
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
              <Image src={close} alt="Close icon" width={36} height={36} />

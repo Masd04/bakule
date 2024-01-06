@@ -24,7 +24,7 @@ const Communities: NextPage = () => {
 
     <header className="sticky top-[4.78rem] z-10 pt-1 mt-0">
       
-      <h1 className="px-4 py-2 text-black bg-gray-100 text-4xl font-bold text-center">Communities</h1>
+      <h1 className="px-4 pt-2 pb-3 text-black bg-gray-100 text-4xl font-bold text-center">Communities</h1>
 
       <div className="flex justify-center py-2 select-none bg-gray-100">
         <input type="text" placeholder="search" className="bg-gray-300 rounded-full w-[14rem] text-center border-2 border-gray-400"/>
