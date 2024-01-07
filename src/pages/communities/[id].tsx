@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import type { Community } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
+import  RateButton  from "~/components/RateButton";
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -26,7 +27,11 @@ const CommunityPage: NextPage = () => {
   return (
     <div className="container mx-auto px-6 py-2">
 
+    <div className="flex flex-row justify-between">
     <GoBack />
+    <RateButton />
+    </div>
+
 
       <div className="bg-white rounded shadow-lg">
 
