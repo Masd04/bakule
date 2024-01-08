@@ -5,8 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
+h1 {
+  user-select: none;
+}
+
 #nav {
     font-family: 'Montserrat', sans-serif;
+    user-select: none;
   }
 
 li:hover {
