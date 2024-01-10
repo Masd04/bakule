@@ -4,7 +4,9 @@ import useSWR from 'swr';
 import Image from 'next/image';
 import type { Community } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
-import  RateButton  from "~/components/RateButton";
+
+import  Modal  from "~/components/Modal";
+import { useState } from 'react';
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -16,6 +18,9 @@ const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
 
 
 const CommunityPage: NextPage = () => {
+
+  const [showModal, setShowModal ] = useState(false);
+
   const router = useRouter();
   const id = Array.isArray(router.query.id) ? router.query.id[0] : router.query.id;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -25,11 +30,17 @@ const CommunityPage: NextPage = () => {
   if (!community) return <div>Loading...</div>;
 
   return (
+    <>
     <div className="container mx-auto px-6 py-2">
 
     <div className="flex flex-row justify-between">
+
     <GoBack />
-    <RateButton />
+    {/* RATE BUTTON */}
+    <button className="w-auto h-12 px-5 bg-[#270858] rounded-md text-white font-bold hover:scale-105" onClick={() => setShowModal(true)}>
+      Rate this community
+    </button>
+
     </div>
 
 
@@ -54,6 +65,9 @@ const CommunityPage: NextPage = () => {
         
       </div>
     </div>
+    
+    <Modal isVisible={showModal} onClose={() => setShowModal(false)}/>
+    </>
   );
 };
 

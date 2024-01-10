@@ -39,6 +39,7 @@ const Communities: NextPage = () => {
    
 
   </div>
+
   </>
 
 )}
