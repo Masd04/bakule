@@ -26,16 +26,21 @@ const MyApp: AppType<{ session: Session | null }> = ({
     </Head>
 
     <div className="container mx-auto flex items-start">
+
+    <div className="md:sticky md:top-0 md:left-0">
     <SideBar />
+    </div>
+
     <div className="min-h-screen flex-grow">
-    
-    <header className="sticky top-0 z-10 border-b bg-gradient-to-b from-[#2e026d] to-[#15162c] pt-2">
-      <h1 className="mb-2 px-4 py-3 text-center text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">CommuPlat</h1>
-    </header>
+
+      <header className="sticky top-0 z-10 border-b bg-gradient-to-b from-[#2e026d] to-[#15162c] pt-2">
+        <h1 className="mb-2 px-4 py-3 text-center text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">CommuPlat</h1>
+      </header>
 
       <Component {...pageProps} />
     
     </div>
+
     </div>
 
     </SessionProvider>
