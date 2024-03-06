@@ -5,13 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
-h1 {
+h1, button, #srch, #nav {
   user-select: none;
 }
 
 #nav {
     font-family: 'Montserrat', sans-serif;
-    user-select: none;
+    
   }
 
 li:hover {
