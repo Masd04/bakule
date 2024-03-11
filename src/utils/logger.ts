@@ -1,6 +1,6 @@
 // utils/logger.ts
 
-import { PrismaClient } from '@prisma/client';
+/* import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -17,4 +17,4 @@ export async function logDbCall(description: string, details: LogDetails) {
       environment: process.env.NODE_ENV, // This will log 'development' or 'production'
     },
   });
-}
+} */
