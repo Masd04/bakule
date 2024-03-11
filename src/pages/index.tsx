@@ -3,6 +3,9 @@ import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
 import type { Community } from '../types/types';
 
+import  Modal1  from "~/components/Modal1";
+import { useState } from 'react';
+
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
   if (!res.ok) {
@@ -12,6 +15,9 @@ const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
 });
 
 const Communities: NextPage = () => {
+
+  const [showModal, setShowModal ] = useState(false);
+
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
@@ -29,7 +35,7 @@ const Communities: NextPage = () => {
           </div>
         </header>
 
-        <button className="w-52 h-12 px-5 ml-4 bg-[#270858] rounded-md text-white font-bold hover:scale-105">
+        <button className="w-52 h-12 px-5 ml-4 bg-[#270858] rounded-md text-white font-bold hover:scale-105" onClick={() => setShowModal(true)}>
           Add new community
         </button>
       </div>
@@ -40,6 +46,8 @@ const Communities: NextPage = () => {
    
 
   </div>
+
+  <Modal1 isVisible={showModal} onClose={() => setShowModal(false)}/>
 
   </>
 
