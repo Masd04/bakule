@@ -43,3 +43,5 @@ yarn-error.log*
 
 # dC
 dC.txt
+
+.vercel
