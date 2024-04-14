@@ -11,7 +11,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         where: { id: String(id) },
         include: {
           ratings: true, // Include related records if needed
-          // reviews: true, // You can include this if you need to return reviews
+          reviews: true, // You can include this if you need to return reviews
         },
       });
 

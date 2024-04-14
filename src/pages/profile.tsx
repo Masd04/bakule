@@ -27,7 +27,7 @@ const Profile: NextPage = () => {
           <h1 className="px-4 py-2 text-white bg-blue-700  text-lg font-bold text-center">Profile</h1>
       </header>
 
-      <div className="text-center">Profile information</div>
+      <div className="text-center">Profile informationnn</div>
 
       {/* <div>
       {users.map((user: User) => (

@@ -3,7 +3,7 @@ import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
 import type { Community } from '../types/types';
 
-import  Modal1  from "~/components/Modal1";
+import  ModalAdd  from "~/components/ModalAdd";
 import { useState } from 'react';
 
 
@@ -47,7 +47,7 @@ const Communities: NextPage = () => {
 
   </div>
 
-  <Modal1 isVisible={showModal} onClose={() => setShowModal(false)}/>
+  <ModalAdd isVisible={showModal} onClose={() => setShowModal(false)}/>
 
   </>
 

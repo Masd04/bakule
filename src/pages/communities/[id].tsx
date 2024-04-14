@@ -5,7 +5,7 @@ import Image from 'next/image';
 import type { Community } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
 
-import  Modal  from "~/components/Modal";
+import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
 
 
@@ -66,7 +66,7 @@ const CommunityPage: NextPage = () => {
       </div>
     </div>
     
-    <Modal isVisible={showModal} onClose={() => setShowModal(false)}/>
+    <ModalRate isVisible={showModal} onClose={() => setShowModal(false)} communityId={community.id}/>
     </>
   );
 };

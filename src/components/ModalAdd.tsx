@@ -7,7 +7,7 @@ interface ModalProps {
   onClose: () => void;
 }
 
-const Modal1: React.FC<ModalProps> = ({ isVisible, onClose }) => {
+const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
   if (!isVisible) return null;
 
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -56,4 +56,4 @@ const Modal1: React.FC<ModalProps> = ({ isVisible, onClose }) => {
   );
 };
 
-export default Modal1;
+export default ModalAdd;
