@@ -20,7 +20,7 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
   };
 
-  // Removed 'async' keyword since we are not using 'await' inside
+  
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

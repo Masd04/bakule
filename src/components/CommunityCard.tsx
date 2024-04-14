@@ -4,7 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image'
 
 interface CommunityProps {
-    community: Community;
+    community: Community & { ratingsCount: number; reviewsCount: number };
 }
 
 
@@ -33,20 +33,16 @@ export function CommunityCard({ community }: CommunityProps) {
       {community.description}
     </p>
     <h6 className="mb-1 text-base font-medium leading-tight text-neutral-600">
-      Rating:
+      Ratings:
     </h6>
     <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-200">
-    {community.ratings !== undefined ? (
-        <span>{community.ratings}</span>
-    ) : (
-        <span className="text-red-500">No ratings yet</span>
-    )}
+        {community.ratingsCount || 0}
     </p>
     <h6 className="mb-1 text-base font-medium leading-tight text-neutral-600">
       Reviews:
     </h6>
     <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-200">
-      0
+      {community.reviewsCount || 0}
     </p>
     
   </div>

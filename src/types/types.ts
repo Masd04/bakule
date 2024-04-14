@@ -5,7 +5,8 @@ export type Community = {
     imageUrl?: string;
     admin?: string;
     createdAt?: Date;
-    ratings?: number;
+    ratingsCount?: number;
+    reviewsCount?: number;
    
   }
 
