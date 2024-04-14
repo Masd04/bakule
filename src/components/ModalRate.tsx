@@ -1,12 +1,15 @@
 import React, {useState} from 'react';
-import Image from 'next/image';
-import type { StaticImageData } from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
 
 interface ModalProps {
   isVisible: boolean;
   onClose: () => void;
   communityId: string;
+}
+
+interface RatingResponse {
+  message: string;
 }
 
 const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => {
@@ -31,30 +34,30 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => 
       content: reviewContent,
     };
 
-    try {
-      const response = await fetch('/api/communities/rate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(requestBody),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const data = await response.json();
+    fetch('/api/communities/rate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(requestBody),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json(); // This now returns a Promise that will resolve with your data
+      })
+      .then((data: RatingResponse) => {
         onClose(); // Close the modal on success
-      } catch (error: unknown) {
-        // Ensure error is of type Error
+      })
+      .catch((error: unknown) => {
         if (error instanceof Error) {
           console.error('Failed to submit rating:', error.message);
         } else {
           console.error('Failed to submit rating:', error);
         }
-      }
-    };
+      });
+  };
 
 
   return (
