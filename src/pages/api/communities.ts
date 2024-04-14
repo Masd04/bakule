@@ -17,8 +17,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               // Modify the communities to include counts in the response
               const modifiedCommunities = communities.map(community => ({
                 ...community,
-                ratingsCount: community._count.ratings,
-                reviewsCount: community._count.reviews,
+                ratingsCount: community._count?.ratings ?? 0,
+                reviewsCount: community._count?.reviews ?? 0,
               }));
 
             return res.status(200).json(modifiedCommunities);
