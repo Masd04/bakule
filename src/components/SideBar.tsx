@@ -91,9 +91,7 @@ export function SideBar () {
         <li className="text-center">
             <Link href="/" onClick={() => handleLinkClick('/')}>Communities</Link>
         </li>
-        <li>
-        <Link href="/profile" onClick={() => handleLinkClick('/profile')}>ProfileOld</Link>
-        </li>
+
         {user != null && ( 
         <li>
             <Link href={`/profile/${user.id}`} onClick={() => handleLinkClick(`/profile/${user.id}`)}>Profile</Link>
