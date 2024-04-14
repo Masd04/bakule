@@ -45,3 +45,5 @@ yarn-error.log*
 dC.txt
 
 .vercel
+
+/resetRatings/
