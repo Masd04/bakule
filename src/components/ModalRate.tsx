@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
 
 interface ModalProps {
@@ -8,11 +9,7 @@ interface ModalProps {
   communityId: string;
 }
 
-interface RatingResponse {
-  message: string;
-}
-
-const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => {
+const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) => {
   const [ratingValue, setRatingValue] = useState<number>(0);
   const [reviewContent, setReviewContent] = useState<string>('');
 
@@ -23,13 +20,12 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => 
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  // Removed 'async' keyword since we are not using 'await' inside
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    // Define the request body here within the handleSubmit function
-    const requestBody: { communityId: string; value: number; content: string } = {
-       // This should be the current logged in user's ID
-      communityId: communityId, // The community ID should be passed as a prop to the modal
+    const requestBody = {
+      communityId,
       value: ratingValue,
       content: reviewContent,
     };
@@ -45,17 +41,13 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => 
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
-        return response.json(); // This now returns a Promise that will resolve with your data
+        return response.json();
       })
-      .then((data: RatingResponse) => {
+      .then((_data) => { // Prefixed 'data' with an underscore to indicate it's intentionally unused
         onClose(); // Close the modal on success
       })
-      .catch((error: unknown) => {
-        if (error instanceof Error) {
-          console.error('Failed to submit rating:', error.message);
-        } else {
-          console.error('Failed to submit rating:', error);
-        }
+      .catch((error) => {
+        console.error('Failed to submit rating:', error);
       });
   };
 
