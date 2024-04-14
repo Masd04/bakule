@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
+import type { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
 
 interface ModalProps {
@@ -23,7 +24,7 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => 
     e.preventDefault();
 
     // Define the request body here within the handleSubmit function
-    const requestBody = {
+    const requestBody: { communityId: string; value: number; content: string } = {
        // This should be the current logged in user's ID
       communityId: communityId, // The community ID should be passed as a prop to the modal
       value: ratingValue,
@@ -39,17 +40,21 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId}) => 
         body: JSON.stringify(requestBody),
       });
 
-      const data = await response.json();
-      if (response.ok) {
-        onClose(); // Close the modal on success
-        // Here you might want to trigger some update to the state to reflect the new rating
-      } else {
-        throw new Error(data.message || 'Failed to submit rating');
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
-    } catch (error) {
-      console.error('Failed to submit rating:', error);
-    }
-  };
+
+      const data = await response.json();
+        onClose(); // Close the modal on success
+      } catch (error: unknown) {
+        // Ensure error is of type Error
+        if (error instanceof Error) {
+          console.error('Failed to submit rating:', error.message);
+        } else {
+          console.error('Failed to submit rating:', error);
+        }
+      }
+    };
 
 
   return (

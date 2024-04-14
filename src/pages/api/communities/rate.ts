@@ -1,7 +1,15 @@
 // pages/api/communities/rate.ts
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from "../../../server/db"; // Adjust the import path as necessary
 import { getServerAuthSession } from "../../../server/auth"; // Import the session helper
+
+
+interface RateRequestBody {
+  communityId: string;
+  value: number;
+  content?: string;
+}
+
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -11,8 +19,10 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       return res.status(401).json({ message: 'You must be signed in to submit a rating.' });
     }
 
+    
+
     const userId = session.user.id; // Use the user ID from the session
-    const { communityId, value, content } = req.body;
+    const { communityId, value, content } = req.body as RateRequestBody;
     
     try {
       // Create the Rating
