@@ -1,3 +1,5 @@
+// pages/communities/[id].tsx
+
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';

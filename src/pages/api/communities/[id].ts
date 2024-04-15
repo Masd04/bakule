@@ -1,4 +1,4 @@
-// pages/api/communities/[id].ts
+// pages/api/communities/[id].ts 
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from "../../../server/db"; // Adjust the import path as necessary
 

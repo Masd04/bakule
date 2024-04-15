@@ -1,3 +1,5 @@
+// components/CommunityCard.tsx
+
 import type { Community } from '../types/types';
 import styles from '../styles/style.js'
 import Link from 'next/link';

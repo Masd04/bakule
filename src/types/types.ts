@@ -1,3 +1,5 @@
+// types/types.ts
+
 export type Community = {
     id: string;
     name?: string;
