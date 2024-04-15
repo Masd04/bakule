@@ -3,8 +3,9 @@
 import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
+import styles from '../../styles/style.js'
 import Image from 'next/image';
-import type { Community } from '../../types/types';
+import type { RatRevCom } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
 
 import  ModalRate  from "~/components/ModalRate";
@@ -26,7 +27,7 @@ const CommunityPage: NextPage = () => {
   const router = useRouter();
   const id = Array.isArray(router.query.id) ? router.query.id[0] : router.query.id;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const { data: community, error } = useSWR<Community>(id ? `/api/communities/${id}` : null, fetcher);
+  const { data: community, error } = useSWR<RatRevCom>(id ? `/api/communities/${id}` : null, fetcher);
 
   if (error) return <div>Failed to load the community.</div>;
   if (!community) return <div>Loading...</div>;
@@ -39,7 +40,7 @@ const CommunityPage: NextPage = () => {
 
     <GoBack />
     {/* RATE BUTTON */}
-    <button className="w-auto h-12 px-5 bg-[#270858] rounded-md text-white font-bold hover:scale-105" onClick={() => setShowModal(true)}>
+    <button className={`${styles.rateButton}`} onClick={() => setShowModal(true)}>
       Rate this community
     </button>
 
@@ -63,9 +64,50 @@ const CommunityPage: NextPage = () => {
           <div className="font-bold text-xl mb-2">{community.name}</div>
           <p className="text-gray-700 text-base">{community.description}</p>
         </div>
-
         
       </div>
+      
+      <div className="mt-7 mb-5 font-bold">
+      <h3>User Feedback</h3>
+      </div>
+
+      <div id="reviewCard" className="py-4 bg-blue-100 rounded shadow-lg">
+      <div className="ml-5">
+      
+           {community.ratingsReviews.map((item) => (
+        <div key={`${item.id}`} className="feedback-card">
+
+          <div className="flex justify-left items-start mb-1">
+
+          <div className="p-[0rem] border-2 border-blue-800 mr-2">
+          <Image
+            src={item.user.image}
+            alt='some alt'
+            width={30}
+            height={20}
+          />
+          </div>
+
+          <div className="">
+          <p className="font-semibold text-2xl">{item.user.name}</p>
+          </div>
+
+          </div>
+
+          <div className="">
+          <p className="text-xl font-semibold">{item.value} *</p>
+          </div>
+
+          <div className="text-lg">
+         {item.review?.content && <p className="pt-3"><span className="font-semibold">Review: </span><br /> {item.review.content}</p>}
+         </div>
+    
+        </div>
+))}
+      </div>
+      </div>
+
+
     </div>
     
     <ModalRate isVisible={showModal} onClose={() => setShowModal(false)} communityId={community.id}/>

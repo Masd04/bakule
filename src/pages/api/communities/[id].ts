@@ -10,13 +10,31 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       const community = await prisma.community.findUnique({
         where: { id: String(id) },
         include: {
-          ratings: true, // Include related records if needed
-          reviews: true, // You can include this if you need to return reviews
+          ratings: {
+            include: {
+              user: true, // Include user details if necessary
+            },
+          },
+          reviews: {
+            include: {
+              user: true, // Include user details if necessary
+            },
+          },
         },
       });
 
       if (community) {
-        res.status(200).json(community);
+
+        const ratingsReviews = community.ratings.map((rating) => {
+          return {
+            ...rating,
+            review: community.reviews.find(
+              (review) => review.userId === rating.userId
+            ),
+          };
+        });
+
+        res.status(200).json({...community, ratingsReviews});
       } else {
         res.status(404).json({ message: 'Community not found' });
       }

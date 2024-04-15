@@ -19,7 +19,10 @@ export function CommunityCard({ community }: CommunityProps) {
 
     <div className="flex flex-row">
     <div className="p-[0.1rem] border-2 rounded-full border-gray-700 mr-2">
-    <Image src={community.imageUrl ?? 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'} alt="Discord logo" width={36} height={36} />
+    <Image src={community.imageUrl ?? 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'}
+    alt="Discord logo" 
+    width={36}
+    height={36} />
 
     </div>
     <h5

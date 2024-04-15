@@ -1,6 +1,7 @@
 import type { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
+import styles from '../styles/style.js'
 import type { Community } from '../types/types';
 
 import  ModalAdd  from "~/components/ModalAdd";
@@ -35,7 +36,7 @@ const Communities: NextPage = () => {
           </div>
         </header>
 
-        <button className="w-52 h-12 px-5 ml-4 bg-[#270858] rounded-md text-white font-bold hover:scale-105" onClick={() => setShowModal(true)}>
+        <button className={`${styles.addButton}`} onClick={() => setShowModal(true)}>
           Add new community
         </button>
       </div>
