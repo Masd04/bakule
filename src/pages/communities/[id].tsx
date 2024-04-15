@@ -47,9 +47,9 @@ const CommunityPage: NextPage = () => {
     </div>
 
 
-      <div className="bg-white rounded shadow-lg">
+      <div className="bg-white rounded shadow-lg border-2 border-gray-200">
 
-      <div className="ml-5 w-1/3 sm:w-1/6">
+      <div className="ml-5 my-3 w-1/3 sm:w-1/6">
       {community.imageUrl && (
           <Image
             src={community.imageUrl}
@@ -61,17 +61,18 @@ const CommunityPage: NextPage = () => {
         </div>
         
         <div className="px-6 py-4">
-          <div className="font-bold text-xl mb-2">{community.name}</div>
-          <p className="text-gray-700 text-base">{community.description}</p>
+          <div className="font-bold text-2xl mb-2">{community.name}</div>
+          <p className="text-gray-700 sm:text-xl">{community.description}</p>
         </div>
         
       </div>
       
-      <div className="mt-7 mb-5 font-bold">
+      <div className="mt-7 mb-3 text-lg font-bold">
       <h3>User Feedback</h3>
       </div>
 
-      <div id="reviewCard" className="py-4 bg-blue-100 rounded shadow-lg">
+      <div id="reviewCard"
+           className="py-4 bg-blue-100 border-2 border-gray-300 rounded shadow-lg">
       <div className="ml-5">
       
            {community.ratingsReviews.map((item) => (

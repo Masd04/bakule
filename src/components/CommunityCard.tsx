@@ -26,29 +26,33 @@ export function CommunityCard({ community }: CommunityProps) {
 
     </div>
     <h5
-      className="text-xl font-medium leading-tight text-neutral-800">
+      className="text-2xl font-medium leading-tight text-neutral-800">
       {community.name}
     </h5>
     </div>
 
-    <h6 className="mb-1 text-base font-medium leading-tight text-neutral-600">
+    <h6 className="my-1 text-lg font-medium leading-tight text-neutral-600">
       Description:
     </h6>
     <p className={`${styles.paragraph}`}>
       {community.description}
     </p>
-    <h6 className="mb-1 text-base font-medium leading-tight text-neutral-600">
-      Ratings:
+
+    <div className="flex space-x-20">
+    <h6 className="mb-1 text-lg font-medium leading-tight text-neutral-600">
+      Ratings: {community.ratingsCount ?? 0}
     </h6>
-    <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-200">
+    
+{/*     <p className="mb-2 text-base text-neutral-600 dark:text-neutral-200">
         {community.ratingsCount ?? 0}
-    </p>
-    <h6 className="mb-1 text-base font-medium leading-tight text-neutral-600">
-      Reviews:
+    </p> */}
+    <h6 className="mb-1 text-lg font-medium leading-tight text-neutral-600">
+      Reviews: {community.reviewsCount ?? 0}
     </h6>
-    <p className="mb-2 text-sm text-neutral-600 dark:text-neutral-200">
+{/*     <p className="mb-2 text-base text-neutral-600 dark:text-neutral-200">
       {community.reviewsCount ?? 0}
-    </p>
+    </p> */}
+    </div>
     
   </div>
   </div>
