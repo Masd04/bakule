@@ -7,6 +7,7 @@ import styles from '../../styles/style.js'
 import Image from 'next/image';
 import type { RatRevCom } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
+import { star } from "../../../public/img";
 
 import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
@@ -31,6 +32,14 @@ const CommunityPage: NextPage = () => {
 
   if (error) return <div>Failed to load the community.</div>;
   if (!community) return <div>Loading...</div>;
+
+  // Colored Rating Values
+  const getRatingColorClass = (value: number) => {
+    if (value <= 4) return 'text-red-600'; 
+    if (value <= 7) return 'text-yellow-500'; 
+    return 'text-green-500'; 
+  };
+
 
   return (
     <>
@@ -71,42 +80,48 @@ const CommunityPage: NextPage = () => {
       <h3>User Feedback</h3>
       </div>
 
-      <div id="reviewCard"
-           className="py-4 bg-blue-100 border-2 border-gray-300 rounded shadow-lg">
+<div id="reviewCard">
+  {community.ratingsReviews.map((item) => (
+    <div key={item.id} className="py-4 bg-blue-100 border-2 border-gray-300 rounded shadow-lg mb-3">
       <div className="ml-5">
-      
-           {community.ratingsReviews.map((item) => (
-        <div key={`${item.id}`} className="feedback-card">
+        <div className="feedback-card">
 
           <div className="flex justify-left items-start mb-1">
-
-          <div className="p-[0rem] border-2 border-blue-800 mr-2">
-          <Image
-            src={item.user.image}
-            alt='some alt'
-            width={30}
-            height={20}
-          />
+            <div className="border-2 border-blue-800 mr-2">
+              
+              <Image
+                src={item.user.image}
+                alt={item.user.name}
+                width={30}
+                height={20}
+              />
+            </div>
+            <div>
+              <p className="font-semibold text-2xl">{item.user.name}</p>
+            </div>
           </div>
 
-          <div className="">
-          <p className="font-semibold text-2xl">{item.user.name}</p>
+          <div className="flex space-x-1">
+            <p className={`text-2xl font-bold ${getRatingColorClass(item.value)}`}>{item.value}</p>
+            <Image
+                src={star}
+                alt="star icon"
+                width={24.75}
+                height={16.5}
+              />
           </div>
 
-          </div>
+          {item.review?.content && (
+            <div className="text-lg">
+              <p className="pt-3"><span className="font-semibold">Review: </span><br />{item.review.content}</p>
+            </div>
+          )}
 
-          <div className="">
-          <p className="text-xl font-semibold">{item.value} *</p>
-          </div>
-
-          <div className="text-lg">
-         {item.review?.content && <p className="pt-3"><span className="font-semibold">Review: </span><br /> {item.review.content}</p>}
-         </div>
-    
         </div>
-))}
       </div>
-      </div>
+    </div>
+  ))}
+</div>
 
 
     </div>
