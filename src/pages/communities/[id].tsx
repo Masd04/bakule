@@ -34,7 +34,7 @@ const CommunityPage: NextPage = () => {
   if (!community) return <div>Loading...</div>;
 
   // Colored Rating Values
-  const getRatingColorClass = (value: number) => {
+  const getRatingColorClass = (value: number ) => {
     if (value <= 4) return 'text-red-600'; 
     if (value <= 7) return 'text-yellow-500'; 
     return 'text-green-500'; 
@@ -67,6 +67,8 @@ const CommunityPage: NextPage = () => {
 
       <div className="bg-white rounded-lg shadow-lg border-2 border-gray-200">
 
+      <div className="flex justify-between">
+
       <div className="ml-5 my-3 pt-3 w-1/3 sm:w-1/6">
       {community.imageUrl && (
           <Image
@@ -77,12 +79,28 @@ const CommunityPage: NextPage = () => {
           />
         )}
         </div>
+
+        <div className="flex mr-2 mt-2 sm:mr-10 justify-end sm:justify-center items-start sm:items-center space-x-3">        
+        <p className={`sm:text-[8.5rem] text-5xl font-bold ${typeof community.averageRating === 'number' ? getRatingColorClass(community.averageRating) : ''}`}>
+          {community.averageRating ?? "0"}
+        </p>
+        <div className="w-1/4 lg:w-full">
+        <Image id="star"
+                src={star as StaticImageData}
+                alt="star icon"
+                width={120}
+                height={90}
+              />
+        </div>
+        </div>
+
+        </div>
         
         <div className="px-6 py-4">
           <div className="font-bold text-2xl mb-2">{community.name}</div>
           <p className="text-gray-700 sm:text-xl">{community.description}</p>
         </div>
-        
+
       </div>
       
       <div className="mt-7 mb-3 text-lg font-bold">

@@ -9,6 +9,7 @@ export type Community = {
     createdAt?: Date;
     ratingsCount?: number;
     reviewsCount?: number;
+    averageRating?: number | string;
     ratings?: Rating[];
     reviews?: Review[];
    

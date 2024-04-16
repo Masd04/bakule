@@ -49,6 +49,10 @@ export function CommunityCard({ community }: CommunityProps) {
     <h6 className="mb-1 text-lg font-medium leading-tight text-neutral-600">
       Reviews: {community.reviewsCount ?? 0}
     </h6>
+
+    <h6 className="mb-1 text-lg font-medium leading-tight text-neutral-600">
+      Avg: {community.averageRating ?? "No ratings"}
+    </h6>
 {/*     <p className="mb-2 text-base text-neutral-600 dark:text-neutral-200">
       {community.reviewsCount ?? 0}
     </p> */}

@@ -25,6 +25,20 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
       if (community) {
 
+        // Calculate average rating for the community
+        const averageRatingResult = await prisma.rating.aggregate({
+          _avg: {
+            value: true
+          },
+          where: {
+            communityId: community.id
+          }
+        });
+
+        const averageRating = averageRatingResult._avg.value
+          ? parseFloat(averageRatingResult._avg.value.toFixed(1))
+          : "0";
+
         const ratingsReviews = community.ratings.map((rating) => {
           return {
             ...rating,
@@ -34,7 +48,13 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
           };
         });
 
-        res.status(200).json({...community, ratingsReviews});
+        const responseCommunity = {
+          ...community,
+          averageRating,
+          ratingsReviews
+        };
+
+        res.status(200).json(responseCommunity);
       } else {
         res.status(404).json({ message: 'Community not found' });
       }

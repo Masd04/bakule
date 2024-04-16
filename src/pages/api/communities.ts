@@ -16,14 +16,25 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                 },
               });
   
-              // Modify the communities to include counts in the response
-              const modifiedCommunities = communities.map(community => ({
-                ...community,
-                ratingsCount: community._count?.ratings ?? 0,
-                reviewsCount: community._count?.reviews ?? 0,
-              }));
+              const communityDetails = await Promise.all(communities.map(async community => {
+                const avgRating = await prisma.rating.aggregate({
+                    _avg: {
+                        value: true
+                    },
+                    where: {
+                        communityId: community.id
+                    }
+                });
 
-            return res.status(200).json(modifiedCommunities);
+ return {
+                    ...community,
+                    ratingsCount: community._count.ratings ?? 0,
+                    reviewsCount: community._count.reviews ?? 0,
+                    averageRating: avgRating._avg.value ? parseFloat(avgRating._avg.value.toFixed(1)) : "0"
+                };
+            }));
+
+            return res.status(200).json(communityDetails);
         } catch (error) {
             return res.status(500).json({ error: "Internal Server Error" });
         }
