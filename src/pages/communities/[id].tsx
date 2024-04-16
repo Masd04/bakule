@@ -87,7 +87,7 @@ const CommunityPage: NextPage = () => {
         <div className="feedback-card">
 
           <div className="flex justify-left items-start mb-1">
-            <div className="border-2 border-blue-800 mr-2">
+            <div id="profilePic" className="border-2 border-blue-800 mr-2">
               
               <Image
                 src={item.user.image}
@@ -103,7 +103,7 @@ const CommunityPage: NextPage = () => {
 
           <div className="flex space-x-1">
             <p className={`text-2xl font-bold ${getRatingColorClass(item.value)}`}>{item.value}</p>
-            <Image
+            <Image id="star"
                 src={star as StaticImageData}
                 alt="star icon"
                 width={24.75}
