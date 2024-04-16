@@ -3,7 +3,7 @@ import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
 import styles from '../styles/style.js'
 import type { Community } from '../types/types';
-
+import { useSession } from "next-auth/react";
 import  ModalAdd  from "~/components/ModalAdd";
 import { useState } from 'react';
 
@@ -19,11 +19,21 @@ const Communities: NextPage = () => {
 
   const [showModal, setShowModal ] = useState(false);
 
+  const { data: session } = useSession();
+
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
   if (error) return <div>Failed to load users</div>;
   if (!communities) return <div>Loading...</div>;
+
+  const handleAddButtonClick = () => {
+    if (!session) {
+      alert('You must be logged in to add new community.')
+    } else {
+      setShowModal(true);
+    }
+  }
     
   return (
   <>
@@ -36,7 +46,8 @@ const Communities: NextPage = () => {
           </div>
         </header>
 
-        <button className={`${styles.addButton}`} onClick={() => setShowModal(true)}>
+        <button
+          className={`${styles.addButton}`} onClick={handleAddButtonClick}>
           Add new community
         </button>
       </div>

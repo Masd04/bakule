@@ -9,10 +9,8 @@ import { close, menu  } from "../../public/img";
 // Extend the Session type with the user properties you expect to use
 interface ExtendedSession {
     user: {
-      // Include the user properties here, e.g.:
       id: string;
       name: string;
-      // Add any other user properties you expect from the session
     }
   }
 

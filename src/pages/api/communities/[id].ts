@@ -1,6 +1,6 @@
 // pages/api/communities/[id].ts 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from "../../../server/db"; // Adjust the import path as necessary
+import { prisma } from "../../../server/db";
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
@@ -12,12 +12,12 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
         include: {
           ratings: {
             include: {
-              user: true, // Include user details if necessary
+              user: true, 
             },
           },
           reviews: {
             include: {
-              user: true, // Include user details if necessary
+              user: true, 
             },
           },
         },

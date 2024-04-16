@@ -8,7 +8,7 @@ import Image, { StaticImageData } from 'next/image';
 import type { RatRevCom } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
 import { star } from "../../../public/img";
-
+import { useSession } from "next-auth/react";
 import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
 
@@ -24,7 +24,7 @@ const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
 const CommunityPage: NextPage = () => {
 
   const [showModal, setShowModal ] = useState(false);
-
+  const { data: session } = useSession();
   const router = useRouter();
   const id = Array.isArray(router.query.id) ? router.query.id[0] : router.query.id;
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
@@ -41,6 +41,15 @@ const CommunityPage: NextPage = () => {
   };
 
 
+  const handleRateButtonClick = () => {
+    if (!session) {
+      alert('You must be logged in to rate communities.')
+    } else {
+      setShowModal(true);
+    }
+  }
+  
+
   return (
     <>
     <div className="container mx-auto px-6 py-2">
@@ -49,7 +58,7 @@ const CommunityPage: NextPage = () => {
 
     <GoBack />
     {/* RATE BUTTON */}
-    <button className={`${styles.rateButton}`} onClick={() => setShowModal(true)}>
+    <button className={`${styles.rateButton}`} onClick={handleRateButtonClick}>
       Rate this community
     </button>
 
@@ -101,7 +110,7 @@ const CommunityPage: NextPage = () => {
             </div>
           </div>
 
-          <div className="w-[100%] h-[0.15rem] my-2 bg-slate-300"
+          <div className="w-[100%] h-[0.1rem] my-2 bg-slate-300"
                id="separator">
           </div>
 
@@ -117,7 +126,7 @@ const CommunityPage: NextPage = () => {
 
           {item.review?.content && (
             <div className="text-lg">
-              <p className="pt-3"><span className="font-semibold">Review: </span><br />{item.review.content}</p>
+              <p className="pt-3"><span className="font-semibold border-b-2 border-gray-300">Review: </span><br />{item.review.content}</p>
             </div>
           )}
 
