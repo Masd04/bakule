@@ -11,6 +11,7 @@ import { star } from "../../../public/img";
 import { useSession } from "next-auth/react";
 import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
+import AvgRate from "~/components/AvgRate";
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -80,19 +81,12 @@ const CommunityPage: NextPage = () => {
         )}
         </div>
 
-        <div className="flex mr-2 mt-2 sm:mr-10 justify-end sm:justify-center items-start sm:items-center space-x-3">        
-        <p className={`sm:text-[8.5rem] text-5xl font-bold ${typeof community.averageRating === 'number' ? getRatingColorClass(community.averageRating) : ''}`}>
-          {community.averageRating ?? "0"}
-        </p>
-        <div className="w-1/4 lg:w-full">
-        <Image id="star"
-                src={star as StaticImageData}
-                alt="star icon"
-                width={120}
-                height={90}
-              />
-        </div>
-        </div>
+      <AvgRate 
+        averageRating={community.averageRating ?? 0}
+        textSize="sm:text-[8.5rem] text-5xl"
+        imgW={120}
+        imgH={90}
+      />
 
         </div>
         
