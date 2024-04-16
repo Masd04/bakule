@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import { back } from "../../public/img";
 import Link from 'next/link';
 
@@ -8,7 +8,7 @@ const GoBack = () => {
             <Link href="/" className="inline-block scale-100 hover:scale-110">
                 <button type="button">
                     <Image
-                        src={back}
+                        src={back as StaticImageData}
                         alt='Go back button'
                         width={50}
                         height={40}
