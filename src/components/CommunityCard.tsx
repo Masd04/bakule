@@ -15,7 +15,7 @@ export function CommunityCard({ community }: CommunityProps) {
     <Link href={`/communities/${community.id}`}>
     <div id="card" className="py-4 mx-6">
     <div
-    className="block rounded-lg bg-blue-100 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
+    className="block bg-sky-50 p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
 
     <div className="flex flex-row">
     <div className="p-[0.1rem] border-2 rounded-full border-gray-700 mr-2">

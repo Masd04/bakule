@@ -56,9 +56,9 @@ const CommunityPage: NextPage = () => {
     </div>
 
 
-      <div className="bg-white rounded shadow-lg border-2 border-gray-200">
+      <div className="bg-white rounded-lg shadow-lg border-2 border-gray-200">
 
-      <div className="ml-5 my-3 w-1/3 sm:w-1/6">
+      <div className="ml-5 my-3 pt-3 w-1/3 sm:w-1/6">
       {community.imageUrl && (
           <Image
             src={community.imageUrl}
@@ -82,11 +82,11 @@ const CommunityPage: NextPage = () => {
 
 <div id="reviewCard">
   {community.ratingsReviews.map((item) => (
-    <div key={item.id} className="py-4 bg-blue-100 border-2 border-gray-300 rounded shadow-lg mb-3">
-      <div className="ml-5">
+    <div key={item.id} className="py-4 bg-sky-50 border-2 border-gray-300 shadow-lg mb-3">
+      <div className="mx-5">
         <div className="feedback-card">
 
-          <div className="flex justify-left items-start mb-1">
+          <div className="flex justify-left items-center mb-1">
             <div id="profilePic" className="border-2 border-blue-800 mr-2">
               
               <Image
@@ -99,6 +99,10 @@ const CommunityPage: NextPage = () => {
             <div>
               <p className="font-semibold text-2xl">{item.user.name}</p>
             </div>
+          </div>
+
+          <div className="w-[100%] h-[0.15rem] my-2 bg-slate-300"
+               id="separator">
           </div>
 
           <div className="flex space-x-1">
