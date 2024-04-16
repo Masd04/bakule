@@ -4,7 +4,7 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import styles from '../../styles/style.js'
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import type { RatRevCom } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
 import { star } from "../../../public/img";
@@ -104,7 +104,7 @@ const CommunityPage: NextPage = () => {
           <div className="flex space-x-1">
             <p className={`text-2xl font-bold ${getRatingColorClass(item.value)}`}>{item.value}</p>
             <Image
-                src={star}
+                src={star as StaticImageData}
                 alt="star icon"
                 width={24.75}
                 height={16.5}
