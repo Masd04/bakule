@@ -47,3 +47,5 @@ dC.txt
 .vercel
 
 /resetRatings/
+
+sendMail.ts
