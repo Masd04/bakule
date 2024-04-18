@@ -1,10 +1,11 @@
+// components/ModalAdd.tsx
 import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
 import { useSession } from "next-auth/react";
-import emailjs from "@emailjs/browser"
+import emailjs from "emailjs-com"
 
-emailjs.init({publicKey: 'hPcJNDRpyvCulCBHi',});
+/* emailjs.init({publicKey: 'hPcJNDRpyvCulCBHi',}); */
 
 interface ModalProps {
   isVisible: boolean;
@@ -32,7 +33,7 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
   };
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
@@ -47,20 +48,29 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
       server_name: serverNameInput.value,
     };
   
-    emailjs.send('service_nm47c3f', 'template_9p79oos', emailParams)
-      .then((response) => {
-        console.log('SUCCESS!', response.status, response.text);
-        setEmailSent(true);
-        setIsSubmitting(false);
-        setTimeout(() => {
-          setEmailSent(false);
-          onClose(); // Close the modal after showing the success message
-        }, 3000); // Show the success message for
-        
-      }, (err) => {
-        console.error('FAILED...', err);
-        setIsSubmitting(false);
+    try {
+      const response = await fetch('/api/sendMail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(emailParams),
       });
+  
+      if (!response.ok) {
+        throw new Error('Email sending failed');
+      }
+  
+      setEmailSent(true);
+      setTimeout(() => {
+        setEmailSent(false);
+        onClose(); // Close the modal after showing the success message
+      }, 3000); // Show the success message for 3 seconds
+    } catch (error) {
+      console.error('FAILED...', error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
 

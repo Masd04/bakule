@@ -28,7 +28,7 @@ const Communities: NextPage = () => {
   if (!communities) return <div>Loading...</div>;
 
   const handleAddButtonClick = () => {
-    if (!session) {
+    if (session) {
       alert('You must be logged in to add new community.')
     } else {
       setShowModal(true);
