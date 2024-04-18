@@ -53,7 +53,7 @@ const CommunityPage: NextPage = () => {
 
   return (
     <>
-    <div className="container mx-auto px-6 py-2">
+    <div className="container mx-auto px-6 py-2 mt-2">
 
     <div className="flex flex-row justify-between">
 

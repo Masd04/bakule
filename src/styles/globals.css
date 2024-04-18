@@ -5,7 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-h1, h2, h3, button, #srch, #nav, #profilePic, #star {
+h1, h2, h3, button, #srch, #nav, #profilePic, #star, #sentMessage {
   user-select: none;
 }
 

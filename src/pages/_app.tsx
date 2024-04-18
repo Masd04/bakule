@@ -34,7 +34,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <div className="min-h-screen flex-grow">
 
       <header className="sticky top-0 z-10 border-b bg-gradient-to-b from-[#2e026d] to-[#15162c] pt-2">
-        <h1 className="mb-2 px-4 py-3 text-center text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">CommuPlat</h1>
+        <h1 className="mb-2 px-4 py-5 text-center text-4xl font-extrabold tracking-tight text-white sm:text-[5rem]">CommuPlat</h1>
       </header>
 
       <Component {...pageProps} />
