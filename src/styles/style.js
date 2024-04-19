@@ -10,6 +10,7 @@ const styles = {
     rateButton: "w-auto h-12 px-5 bg-cpblue rounded-md text-white font-bold hover:scale-105",
     addButton: "w-52 h-12 px-5 ml-4 bg-cpblue rounded-md text-white font-bold hover:scale-105",
   
+    profileTxt: "text-xl font-semibold space-y-2",
    };
 
 export default styles;

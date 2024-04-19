@@ -26,12 +26,13 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
     <GoBack />
     
+    <div className={`${styles.profileTxt}`}>
     <h1 className={`${styles.flexCenter}`}>{profile.name}</h1>
     <h1 className={`${styles.flexCenter}`}>{profile.email}</h1>
     <div className={`${styles.flexCenter}`}>
     <Image src={profile.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'} alt="Profile image" width={200} height={200} />
     </div>
-
+    </div>
 
     </div>
 
