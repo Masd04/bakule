@@ -3,9 +3,9 @@ import React, { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
 import { useSession } from "next-auth/react";
-import emailjs from "emailjs-com"
+import { api } from '~/utils/api';
 
-/* emailjs.init({publicKey: 'hPcJNDRpyvCulCBHi',}); */
+
 
 interface ModalProps {
   isVisible: boolean;
@@ -26,53 +26,54 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
   const { data: session } = useSession() as { data: ExtendedSession };
   const user = session?.user;
 
-  if (!isVisible) return null;
+  // Use the api object to create the mutation hook
+  const sendEmailMutation = api.email.sendEmail.useMutation();
 
+  if (!isVisible) return null;
+  
+  //Input field size
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.currentTarget.style.height = 'inherit';
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
   };
 
+  //Send Email
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setIsSubmitting(true);
-
-
-    const form = e.currentTarget;
-    const serverNameInput = form.elements.namedItem('value2') as HTMLTextAreaElement;
-  
-  
+    const serverNameInput = e.currentTarget.elements.namedItem('value2') as HTMLTextAreaElement;
+    
+    if (user?.id) {
+      setIsSubmitting(true);
+    
     const emailParams = {
-      user_id: user.id,
-      user_name: user.name,
       server_name: serverNameInput.value,
     };
   
-    try {
-      const response = await fetch('/api/sendMail', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(emailParams),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Email sending failed');
-      }
-  
-      setEmailSent(true);
-      setTimeout(() => {
-        setEmailSent(false);
-        onClose(); // Close the modal after showing the success message
-      }, 3000); // Show the success message for 3 seconds
-    } catch (error) {
-      console.error('FAILED...', error);
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
+    sendEmailMutation.mutate({
+      serverName: serverNameInput.value,
+      userId: user.id,
+    }, {
+      onSuccess: () => {
+        setEmailSent(true);
+        setTimeout(() => {
+          setEmailSent(false);
+          onClose();
+        }, 3000); // Show the success message for 3 seconds
+      },
+      onError: (error) => {
+        // Handle the error state
+        console.error('Failed to send email: ', error);
+        alert('Failed to send email: ' + error.message);
+      },
+      onSettled: () => {
+        // This will be called whether the mutation is successful or fails
+        setIsSubmitting(false);
+      },
+    });
+  } else {
+    alert('User session not found. Please log in to send an email.');
+  }
+};
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
