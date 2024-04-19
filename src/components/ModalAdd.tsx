@@ -38,16 +38,13 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
   };
 
   //Send Email
-  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const serverNameInput = e.currentTarget.elements.namedItem('value2') as HTMLTextAreaElement;
     
     if (user?.id) {
       setIsSubmitting(true);
-    
-    const emailParams = {
-      server_name: serverNameInput.value,
-    };
+
   
     sendEmailMutation.mutate({
       serverName: serverNameInput.value,
