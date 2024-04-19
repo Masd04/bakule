@@ -26,8 +26,8 @@ const Communities: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
-  if (error) return <Alert message="Failed to load communities." textColor="text-red-700"/>;
-  if (!communities) return <Alert message="Loading..." textColor="text-green-600"/>;
+  if (error) return <Alert message="Failed to load communities." textColor="text-cpred"/>;
+  if (!communities) return <Alert message="Loading..." textColor="text-cpblue"/>;
 
 
 
