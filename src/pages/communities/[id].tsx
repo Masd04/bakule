@@ -12,6 +12,7 @@ import { useSession } from "next-auth/react";
 import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
 import AvgRate from "~/components/AvgRate";
+import  Alert  from "~/components/Alert";
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -31,14 +32,14 @@ const CommunityPage: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: community, error } = useSWR<RatRevCom>(id ? `/api/communities/${id}` : null, fetcher);
 
-  if (error) return <div>Failed to load the community.</div>;
-  if (!community) return <div>Loading...</div>;
+  if (error) return <Alert message="Failed to load the community." textColor="text-cp-red"/>
+  if (!community) return <Alert message="Loading..." textColor="text-cp-green"/>;
 
   // Colored Rating Values
   const getRatingColorClass = (value: number ) => {
-    if (value <= 4) return 'text-red-600'; 
-    if (value <= 7) return 'text-yellow-500'; 
-    return 'text-green-500'; 
+    if (value <= 4) return 'text-cpred'; 
+    if (value <= 7) return 'text-cpyellow'; 
+    return 'text-cpgreen'; 
   };
 
 

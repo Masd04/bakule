@@ -14,6 +14,13 @@ export default {
         lg: "1200px",
         xl: "1700px",
       },
+
+      colors: {
+      'cpblue': '#270858',
+      'cpyellow': '#eab308',
+      'cpgreen': '#22c55e',
+      'cpred': '#dc2626',
+      },
     },
   },
   plugins: [],

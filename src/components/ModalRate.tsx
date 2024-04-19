@@ -96,7 +96,7 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
             />
           </div>
 
-          <button type="submit" className="rounded bg-[#270858] md:w-[25%] md:mx-auto pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-opacity-90 focus:outline-none focus:ring-0 active:bg-opacity-80">
+          <button type="submit" className="rounded bg-cpblue md:w-[25%] md:mx-auto pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-opacity-90 focus:outline-none focus:ring-0 active:bg-opacity-80">
             Submit
           </button>
         </div>

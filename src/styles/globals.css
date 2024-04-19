@@ -5,7 +5,7 @@
 @tailwind components;
 @tailwind utilities;
 
-h1, h2, h3, button, #srch, #nav, #profilePic, #star, #sentMessage {
+h1, h2, h3, button, #srch, #nav, #profilePic, #star, #sentMessage, #alert {
   user-select: none;
 }
 
@@ -21,4 +21,8 @@ li:hover {
 #card:hover {
   scale: 1.015;
   cursor: pointer;
+}
+
+#alert {
+  font-family: 'Montserrat', sans-serif;
 }

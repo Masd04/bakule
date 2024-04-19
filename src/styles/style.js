@@ -7,8 +7,8 @@ const styles = {
     flexStart: "flex justify-center items-start",
 
 // Buttons
-    rateButton: "w-auto h-12 px-5 bg-[#270858] rounded-md text-white font-bold hover:scale-105",
-    addButton: "w-52 h-12 px-5 ml-4 bg-[#270858] rounded-md text-white font-bold hover:scale-105",
+    rateButton: "w-auto h-12 px-5 bg-cpblue rounded-md text-white font-bold hover:scale-105",
+    addButton: "w-52 h-12 px-5 ml-4 bg-cpblue rounded-md text-white font-bold hover:scale-105",
   
    };
 

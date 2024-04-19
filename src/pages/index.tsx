@@ -6,6 +6,7 @@ import styles from '../styles/style.js'
 import type { Community } from '../types/types';
 import { useSession } from "next-auth/react";
 import  ModalAdd  from "~/components/ModalAdd";
+import  Alert  from "~/components/Alert";
 import { useState } from 'react';
 
 
@@ -25,8 +26,10 @@ const Communities: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
-  if (error) return <div>Failed to load users</div>;
-  if (!communities) return <div>Loading...</div>;
+  if (error) return <Alert message="Failed to load communities." textColor="text-red-700"/>;
+  if (!communities) return <Alert message="Loading..." textColor="text-green-600"/>;;
+
+
 
   const handleAddButtonClick = () => {
     if (!session) {
