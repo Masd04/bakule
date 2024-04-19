@@ -1,3 +1,4 @@
+//pages/index.tsx
 import type { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
 import useSWR from 'swr';
@@ -28,7 +29,7 @@ const Communities: NextPage = () => {
   if (!communities) return <div>Loading...</div>;
 
   const handleAddButtonClick = () => {
-    if (session) {
+    if (!session) {
       alert('You must be logged in to add new community.')
     } else {
       setShowModal(true);

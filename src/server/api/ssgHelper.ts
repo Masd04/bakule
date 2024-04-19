@@ -1,3 +1,4 @@
+//server/api/ssgHelper.ts
 import { createServerSideHelpers } from "@trpc/react-query/server"
 import { appRouter } from "./root"
 import { createInnerTRPCContext } from './trpc';

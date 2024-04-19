@@ -25,8 +25,6 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div className={`container mx-auto px-6 py-2`}>
 
     <GoBack />
-
-
     
     <h1 className={`${styles.flexCenter}`}>{profile.name}</h1>
     <h1 className={`${styles.flexCenter}`}>{profile.email}</h1>
