@@ -13,6 +13,7 @@ import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
 import AvgRate from "~/components/AvgRate";
 import  Alert  from "~/components/Alert";
+import { getRateColor } from "~/utils/rateColor"
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -32,15 +33,8 @@ const CommunityPage: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: community, error } = useSWR<RatRevCom>(id ? `/api/communities/${id}` : null, fetcher);
 
-  if (error) return <Alert message="Failed to load the community." textColor="text-cp-red"/>
-  if (!community) return <Alert message="Loading..." textColor="text-cp-green"/>;
-
-  // Colored Rating Values
-  const getRatingColorClass = (value: number ) => {
-    if (value <= 4) return 'text-cpred'; 
-    if (value <= 7) return 'text-cpyellow'; 
-    return 'text-cpgreen'; 
-  };
+  if (error) return <Alert message="Failed to load the community." textColor="text-red-700"/>;
+  if (!community) return <Alert message="Loading..." textColor="text-green-600"/>;
 
 
   const handleRateButtonClick = () => {
@@ -128,7 +122,7 @@ const CommunityPage: NextPage = () => {
           </div>
 
           <div className="flex space-x-1">
-            <p className={`text-2xl font-bold ${getRatingColorClass(item.value)}`}>{item.value}</p>
+            <p className={`text-2xl font-bold ${getRateColor(item.value)}`}>{item.value}</p>
             <Image id="star"
                 src={star as StaticImageData}
                 alt="star icon"
