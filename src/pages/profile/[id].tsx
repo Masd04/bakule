@@ -1,3 +1,4 @@
+// src/pages/profile/[id].tsx
 import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
 import Head from "next/head";
 import styles from '../../styles/style.js';
@@ -13,9 +14,11 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
      id, 
     }) => {
      const { data: profile } = api.profile.getById.useQuery({ id })
+     const { data: userRatingsAndReviews } = api.profile.getUserRatingsAndReviews.useQuery({ userId: id });
 
-     if (!profile?.name)
-     return <ErrorPage statusCode={404} />
+     if (!profile || !userRatingsAndReviews) {
+       return <ErrorPage statusCode={404} />;
+     }
 
     return <>
     <Head>
@@ -26,11 +29,39 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
 
     <GoBack />
     
+    <div className="bg-white rounded-lg shadow-lg border-2 border-gray-200">
     <div className={`${styles.profileTxt}`}>
+    <div className={`${styles.flexCenter} w-1/3 sm:w-full mx-auto`}>
+    <Image src={profile.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'}
+           alt="Profile image" 
+           width={200} 
+           height={200} />
+    </div>
     <h1 className={`${styles.flexCenter}`}>{profile.name}</h1>
-    <h1 className={`${styles.flexCenter}`}>{profile.email}</h1>
-    <div className={`${styles.flexCenter}`}>
-    <Image src={profile.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'} alt="Profile image" width={200} height={200} />
+    <h1 className={`${styles.flexCenter} font-light`}>{profile.email}</h1>
+    </div>
+    </div>
+
+    <div className="mt-5 mb-3 text-lg font-bold">
+      <h3>Your ratings:</h3>
+    </div>
+
+
+    <div className="mt-5">
+    <div className="space-y-2">
+          {userRatingsAndReviews.ratingsReviews.map((ratRev, index) => (
+            <div key={index} className="p-4 mb-3 text-lg bg-sky-50 border-2 border-gray-300 shadow-lg">
+
+              <div className="mb-1 border-b-2 border-gray-300">{ratRev.community && <div className="font-semibold">{ratRev.community.name}</div>}
+              </div>
+              <div>Rating: {ratRev.value}
+              </div>
+              <div>{ratRev.review && <div>Review: {ratRev.review.content}</div>}
+              </div>
+              
+            </div>
+          ))}
+
     </div>
     </div>
 

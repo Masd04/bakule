@@ -67,7 +67,7 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
         setTimeout(() => {
           setEmailSent(false);
           onClose();
-        }, 3000); // Show the success message for 3 seconds
+        }, 1200); // Show the success message for 3 seconds
       },
       onError: (error) => {
         // Handle the error state

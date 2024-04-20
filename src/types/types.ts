@@ -27,6 +27,7 @@ export type Rating = {
  value: number;
  createdAt: Date;
  user: User;
+ community: Community;
 }
 
 export type Review = {
@@ -34,6 +35,7 @@ export type Review = {
   content: string;
   createdAt: Date;
   user: User;
+  community: Community;
 }
 
 export type RatRevCom = Community & {
