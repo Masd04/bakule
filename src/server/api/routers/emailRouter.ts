@@ -33,7 +33,7 @@ export const emailRouter = createTRPCRouter({
       const mailOptions = {
         from: ensureEnvVariable('GMAIL_USER'),
         to: ensureEnvVariable('TARGET_EMAIL_ADDRESS'),
-        subject: `${input.serverName} addition request by ${userProfile.name}`,
+        subject: `${input.serverName} - addition request by ${userProfile.name}`,
         text: `User Name: ${userProfile.name}\nUser ID: ${input.userId}\nServer Name: ${input.serverName}`,
       };
 
