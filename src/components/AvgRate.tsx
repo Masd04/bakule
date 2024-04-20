@@ -7,22 +7,22 @@ import { getRateColor } from "~/utils/rateColor"
     imgW: number;
     imgH: number;
     textSize: string;
+    imgWrapStyle: string;
+    xSpacing: string;
   }
 
-  const AvgRate: React.FC<AvgRateProps> = ({ averageRating, imgW, imgH, textSize }) => {
+  const AvgRate: React.FC<AvgRateProps> = ({ averageRating, imgW, imgH, textSize, imgWrapStyle, xSpacing }) => {
     // Colored Rating Values
     // Only call getRateColor if averageRating is a number
   const ratingClass = typeof averageRating === 'number' ? getRateColor(averageRating) : '';
 
     return (
-
-<div className="flex justify-between">
-
-  <div className="flex mr-2 mt-2 sm:mr-10 justify-end sm:justify-center items-start sm:items-center space-x-3">        
+  <>
+  <div className={`${xSpacing} flex justify-center items-center`}>        
   <p className={`${textSize} font-bold ${ratingClass}`}>
     {averageRating ?? "0"}
   </p>
-  <div className="w-1/4 lg:w-full">
+  <div className={`${imgWrapStyle}`}>
   <Image id="star"
           src={star as StaticImageData}
           alt="star icon"
@@ -32,7 +32,7 @@ import { getRateColor } from "~/utils/rateColor"
   </div>
   </div>
 
-  </div>
+  </>
 
     );
   };

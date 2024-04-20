@@ -7,6 +7,7 @@ import { api } from "~/utils/api";
 import ErrorPage from "next/error";
 import Image from 'next/image';
 import  GoBack  from "~/components/GoBack";
+import AvgRate from "~/components/AvgRate";
 
 
 
@@ -50,15 +51,25 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div className="mt-5">
     <div className="space-y-2">
           {userRatingsAndReviews.ratingsReviews.map((ratRev, index) => (
-            <div key={index} className="p-4 mb-3 text-lg bg-sky-50 border-2 border-gray-300 shadow-lg">
+            <div key={index} className="p-4 mb-3 bg-sky-50 border-2 border-gray-300 shadow-lg">
 
               <div className="mb-1 border-b-2 border-gray-300">{ratRev.community && <div className="font-semibold">{ratRev.community.name}</div>}
               </div>
-              <div>Rating: {ratRev.value}
+              <div className="flex">
+              <AvgRate 
+                averageRating={ratRev.value}
+                textSize="text-[1.5rem] sm:text-[2rem]"
+                imgW={30}
+                imgH={20}
+                imgWrapStyle="w-[45%] lg:w-full"
+                xSpacing="space-x-1"
+               />
               </div>
-              <div>{ratRev.review && <div>Review: {ratRev.review.content}</div>}
+              <div>{ratRev.review && <div><span className="font-semibold border-b-2 border-gray-300">Review: </span><br />{ratRev.review.content}</div>}
               </div>
               
+
+
             </div>
           ))}
 

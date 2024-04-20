@@ -75,13 +75,19 @@ const CommunityPage: NextPage = () => {
           />
         )}
         </div>
-
+      
+      <div className="flex justify-between items-center">
+      <div className="mr-2 mt-2 sm:mr-10">
       <AvgRate 
         averageRating={community.averageRating ?? 0}
         textSize="sm:text-[8.5rem] text-5xl"
         imgW={120}
         imgH={90}
+        imgWrapStyle="w-1/4 lg:w-full"
+        xSpacing="space-x-3"
       />
+      </div>
+      </div>
 
         </div>
         
@@ -121,15 +127,16 @@ const CommunityPage: NextPage = () => {
                id="separator">
           </div>
 
-          <div className="flex space-x-1">
-            <p className={`text-2xl font-bold ${getRateColor(item.value)}`}>{item.value}</p>
-            <Image id="star"
-                src={star as StaticImageData}
-                alt="star icon"
-                width={24.75}
-                height={16.5}
-              />
-          </div>
+          <div className="flex">
+              <AvgRate 
+                averageRating={item.value}
+                textSize="text-[1.5rem] sm:text-[2rem]"
+                imgW={30}
+                imgH={20}
+                imgWrapStyle="w-[45%] lg:w-full"
+                xSpacing="space-x-1"
+               />
+              </div>
 
           {item.review?.content && (
             <div className="text-lg">
