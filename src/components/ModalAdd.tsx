@@ -67,7 +67,7 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
         setTimeout(() => {
           setEmailSent(false);
           onClose();
-        }, 1200); // Show the success message for 3 seconds
+        }, 1500); // Show the success message for 3 seconds
       },
       onError: (error) => {
         // Handle the error state
@@ -101,18 +101,17 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
         </button>
       </div>
 
-      {emailSent && (
+      {error && (
+          <div id="inputFail" className="text-cpred text-lg text-center pt-2">{error}</div>
+        )}
+
+      {emailSent ? (
         <div className="flex justify-center" id="sentMessage">
           <div className="w-[70%] text-center font-bold p-4 mt-4 mb-4 text-xl text-green-700 bg-green-100 rounded-md" role="alert">
             Your request has been sent successfully!
           </div>
         </div>
-        )}
-        {error && (
-          <div id="inputFail" className="text-cpred text-lg text-center pt-2">{error}</div>
-        )}
-
-        
+        ) : (      
         <form className="flex flex-col space-y-4" onSubmit={sendEmail}>
           <div>
             <label htmlFor="value2" className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">Server name:</label>
@@ -132,6 +131,8 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
           {isSubmitting ? 'Sending...' : 'Request'}
           </button>
         </form>
+        )}
+
         
       </div>
 
