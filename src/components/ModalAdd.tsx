@@ -22,6 +22,7 @@ interface ExtendedSession {
 const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
   const [emailSent, setEmailSent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState('');
   
   const { data: session } = useSession() as { data: ExtendedSession };
   const user = session?.user;
@@ -35,19 +36,30 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
   const handleInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     e.currentTarget.style.height = 'inherit';
     e.currentTarget.style.height = `${e.currentTarget.scrollHeight}px`;
+    setError('');
   };
 
   //Send Email
   const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const serverNameInput = e.currentTarget.elements.namedItem('value2') as HTMLTextAreaElement;
+    const serverName = serverNameInput.value.trim();
+
+    if  (!serverName) {
+      setError('! Server name is required !');
+      return;
+    }
+    if (serverName.length < 3 || serverName.length > 50) {
+    setError('! Server name must be between 3 and 50 characters !');
+    return;
+    }
     
     if (user?.id) {
       setIsSubmitting(true);
 
   
     sendEmailMutation.mutate({
-      serverName: serverNameInput.value,
+      serverName: serverName,
       userId: user.id,
     }, {
       onSuccess: () => {
@@ -74,10 +86,11 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
-      <div className="w-[45%] flex flex-col bg-white px-5 pb-5 pt-2 rounded-md shadow-lg">
+
+      <div className="w-[75%] sm:w-[65%] md:w-[55%] lg:w-[45%] flex flex-col bg-white px-5 pb-5 pt-2 rounded-md shadow-lg">
         
       <div className="flex items-center justify-between">
-        <h2 className="se:text-md xr:text-lg promax:text-xl sm:text-2xl md:text-3xl ml-10 font-bold text-center flex-grow">Request new community</h2>
+        <h2 className="se:text-lg xr:text-xl promax:text-xl sm:text-2xl md:text-3xl ml-10 font-bold text-center flex-grow">Request new community</h2>
         <button className="ml-auto hover:scale-105" onClick={() => onClose() } aria-label="Close">
         <Image 
           src={closeButton as StaticImageData}
@@ -88,19 +101,24 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
         </button>
       </div>
 
-      {emailSent ? (
+      {emailSent && (
         <div className="flex justify-center" id="sentMessage">
           <div className="w-[70%] text-center font-bold p-4 mt-4 mb-4 text-xl text-green-700 bg-green-100 rounded-md" role="alert">
             Your request has been sent successfully!
           </div>
         </div>
-        ) : (
+        )}
+        {error && (
+          <div id="inputFail" className="text-cpred text-lg text-center pt-2">{error}</div>
+        )}
+
+        
         <form className="flex flex-col space-y-4" onSubmit={sendEmail}>
           <div>
             <label htmlFor="value2" className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">Server name:</label>
             <textarea 
               id="value2" 
-              maxLength={100} 
+              maxLength={50} 
               rows={1}
               className="bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
               style={{ overflowY: 'hidden', resize: 'none' }}
@@ -114,7 +132,6 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
           {isSubmitting ? 'Sending...' : 'Request'}
           </button>
         </form>
-        )}
         
       </div>
 
