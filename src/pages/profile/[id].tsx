@@ -1,5 +1,5 @@
 // src/pages/profile/[id].tsx
-import type { GetStaticPaths, GetStaticPropsContext, InferGetStaticPropsType, NextPage } from "next";
+import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import styles from '../../styles/style.js';
 import { ssgHelper } from "~/server/api/ssgHelper";
@@ -8,12 +8,15 @@ import Image from 'next/image';
 import  GoBack  from "~/components/GoBack";
 import AvgRate from "~/components/AvgRate";
 import Alert from "~/components/Alert";
+import { getSession } from "next-auth/react";
 
 
+interface ProfilePageProps {
+  id: string;
+}
 
-const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-     id, 
-    }) => {
+
+const ProfilePage: NextPage<ProfilePageProps> = ({ id }) => {
      const { data: profile, isLoading: isLoadingProfile, isError: isErrorProfile } = api.profile.getById.useQuery({ id })
      const { data: userRatingsAndReviews, isLoading: isLoadingRatingsReviews, isError: isErrorRatingsReviews } = api.profile.getUserRatingsAndReviews.useQuery({ userId: id });
 
@@ -86,33 +89,28 @@ const ProfilePage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     </>
 };
 
-export const getStaticPaths: GetStaticPaths = () => {
-    return {
-        paths: [],
-        fallback: "blocking"
-    }
-}
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
+  const { id } = context.params as { id: string };
 
-export async function getStaticProps(context: GetStaticPropsContext<{ id: string }>) {
-    const id = context.params?.id
-    
-    if (id == null) {
-        return {
-            redirect: {
-                destination: "/"
-            }
-        }
-    }
-
-    const ssg = ssgHelper()
-    await ssg.profile.getById.prefetch({ id })
-    
+  // If there is no session, or the session user's ID does not match the profile being accessed, redirect to the homepage.
+  if (!session || session.user.id !== id) {
     return {
-        props: {
-            trpcState: ssg.dehydrate(),
-            id,
-            
-        }
-    }
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  const ssg = ssgHelper();
+  await ssg.profile.getById.prefetch({ id });
+
+  return {
+    props: {
+      trpcState: ssg.dehydrate(),
+      id,
+    },
+  };
 }
 export default ProfilePage;

@@ -1,32 +1,34 @@
 //server/api/routers/profile.ts
 import { z } from "zod";
-
-
 import {
   createTRPCRouter,
-  publicProcedure,
+  protectedProcedure, 
 } from "~/server/api/trpc";
+import { TRPCError } from "@trpc/server";
 
 export const profileRouter = createTRPCRouter({
 
-  getById: publicProcedure.input(z.object({ id: z.string()}
-  )).query(async ({
-    input: {id}, ctx}) => {
-    const profile =  await ctx.prisma.user.findUnique({ 
-      where: { id }, 
-      select: { name: true, image: true, email: true}
-    })
+  getById: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ input, ctx }) => {
+    if (ctx.session.user.id !== input.id) {
+      throw new TRPCError({ code: 'UNAUTHORIZED' });
+    }
 
-      if (profile == null) return
+    const profile = await ctx.prisma.user.findUnique({
+      where: { id: input.id },
+      select: { name: true, image: true, email: true },
+    });
 
-      return {
-        name: profile.name,
-        image: profile.image,
-        email: profile.email
+    if (!profile) {
+      throw new TRPCError({ code: 'NOT_FOUND' });
+    }
+
+    return profile;
+  }),
+
+    getUserRatingsAndReviews: protectedProcedure.input(z.object({ userId: z.string() })).query(async ({ input, ctx }) => {
+      if (ctx.session.user.id !== input.userId) {
+        throw new TRPCError({ code: 'UNAUTHORIZED' });
       }
-    }),
-
-    getUserRatingsAndReviews: publicProcedure.input(z.object({ userId: z.string() })).query(async ({ input, ctx }) => {
       const ratings = await ctx.prisma.rating.findMany({
         where: { userId: input.userId },
         include: {
