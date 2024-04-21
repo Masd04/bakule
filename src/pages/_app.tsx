@@ -1,3 +1,4 @@
+// src/pages/_app.tsx
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { type AppType } from "next/app";
@@ -25,7 +26,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <div className="container mx-auto flex items-start">
+    <div className="container mx-auto flex items-start min-h-screen w-full">
 
     <div className="md:sticky md:top-0 md:left-0">
     <SideBar />
