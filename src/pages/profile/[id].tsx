@@ -49,7 +49,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
               </div>
               <Alert 
                 message={errorMessage} textColor="text-cpred text-center" 
-              />;
+              />
             </>
     }
 
