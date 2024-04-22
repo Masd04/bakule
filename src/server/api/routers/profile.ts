@@ -10,6 +10,7 @@ export const profileRouter = createTRPCRouter({
 
   getById: protectedProcedure.input(z.object({ id: z.string() })).query(async ({ input, ctx }) => {
     if (ctx.session.user.id !== input.id) {
+      console.log(`Unauthorized getByID access attempt: Session ID ${ctx.session.user.id} vs Requested ID ${input.id}`);
       throw new TRPCError({ code: 'UNAUTHORIZED' });
     }
 
@@ -27,6 +28,7 @@ export const profileRouter = createTRPCRouter({
 
     getUserRatingsAndReviews: protectedProcedure.input(z.object({ userId: z.string() })).query(async ({ input, ctx }) => {
       if (ctx.session.user.id !== input.userId) {
+        console.log(`Unauthorized getRatRevs access attempt: Session ID ${ctx.session.user.id} vs Requested ID ${input.userId}`);
         throw new TRPCError({ code: 'UNAUTHORIZED' });
       }
       const ratings = await ctx.prisma.rating.findMany({

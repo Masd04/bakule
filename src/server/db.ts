@@ -15,7 +15,7 @@ export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     log:
-      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+     /*  env.NODE_ENV === "development" ?  */["query", "error", "warn"] /* : ["error"] */,
   });
 
 // Production - attach Prisma instance to the global object

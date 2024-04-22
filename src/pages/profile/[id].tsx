@@ -20,14 +20,20 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const session = await getSession(context);
   const { id } = context.params as { id: string };
 
+  console.log("Session Details:", session);
+  console.log("Requested Profile ID:", id);
+
   // If there is no session, or the session user's ID does not match the profile being accessed, redirect to the homepage.
   if (!session || session.user.id !== id) {
+    console.log("Authorization failure. Session missing or user ID mismatch.");
     return {
       props: {
         errorMessage: "Not authorized to view this profile.",
       },
     };
   }
+
+  console.log("Session User ID:", session.user.id, "Requested Profile ID:", id);
 
   const ssg = ssgHelper();
   await ssg.profile.getById.prefetch({ id });
