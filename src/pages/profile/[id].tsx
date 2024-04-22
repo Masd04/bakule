@@ -13,6 +13,7 @@ import { getSession } from "next-auth/react";
 
 interface ProfilePageProps {
   id: string;
+  errorMessage?: string;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -22,9 +23,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   // If there is no session, or the session user's ID does not match the profile being accessed, redirect to the homepage.
   if (!session || session.user.id !== id) {
     return {
-      redirect: {
-        destination: '/',
-        permanent: false,
+      props: {
+        errorMessage: "Not authorized to view this profile.",
       },
     };
   }
@@ -41,7 +41,18 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 
-const ProfilePage: NextPage<ProfilePageProps> = ({ id }) => {
+const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
+    if (errorMessage) {
+      return <>
+              <div className="pt-2 pl-6">
+              <GoBack />
+              </div>
+              <Alert 
+                message={errorMessage} textColor="text-cpred text-center" 
+              />
+            </>
+    }
+
      const { data: profile, isLoading: isLoadingProfile, isError: isErrorProfile } = api.profile.getById.useQuery({ id })
      const { data: userRatingsAndReviews, isLoading: isLoadingRatingsReviews, isError: isErrorRatingsReviews } = api.profile.getUserRatingsAndReviews.useQuery({ userId: id });
 
