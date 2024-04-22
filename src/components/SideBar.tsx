@@ -66,7 +66,7 @@ export function SideBar () {
 
     return (
     <>
-    <button ref={toggleButtonRef} className="fixed md:hidden p-2 top-5 left-4 z-20" onClick={toggleSidebar}>
+    <button ref={toggleButtonRef} className="fixed md:hidden p-2 top-3 left-4 z-20" onClick={toggleSidebar}>
          {isSidebarOpen ? (
               // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
              <Image src={close} alt="Close icon" width={50} height={50} />
@@ -77,7 +77,7 @@ export function SideBar () {
         </button>
         
         
-    <nav ref={sidebarRef} id='nav' className={`fixed top-28 md:top-0 left-0 z-20 md:h-full py-4 px-4 transition-transform transform ${
+    <nav ref={sidebarRef} id='nav' className={`fixed top-[5.5rem] md:top-0 left-0 z-20 md:h-full py-4 px-4 transition-transform transform ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
     } bg-white shadow-md md:relative md:translate-x-0 md:block`}>
     
