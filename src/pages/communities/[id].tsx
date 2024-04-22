@@ -33,7 +33,12 @@ const CommunityPage: NextPage = () => {
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: community, error } = useSWR<RatRevCom>(id ? `/api/communities/${id}` : null, fetcher);
 
-  if (error) return <Alert message="Failed to load the community." textColor="text-cpred"/>;
+  if (error) return <>
+      <div className="pt-2 pl-6">
+      <GoBack />
+      </div>
+      <Alert message="Failed to load the community." textColor="text-cpred"/>
+     </>;
   if (!community) return <Alert message="Loading..." textColor="text-cpblue"/>;
 
 
