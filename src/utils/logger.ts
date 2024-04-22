@@ -1,5 +1,5 @@
 // utils/logger.ts
-
+// for logging purposes
 /* import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
