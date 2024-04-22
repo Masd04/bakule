@@ -4,16 +4,14 @@ import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
 import styles from '../../styles/style.js'
-import Image, { StaticImageData } from 'next/image';
+import Image from 'next/image';
 import type { RatRevCom } from '../../types/types';
 import  GoBack  from "~/components/GoBack";
-import { star } from "../../../public/img";
 import { useSession } from "next-auth/react";
 import  ModalRate  from "~/components/ModalRate";
 import { useState } from 'react';
 import AvgRate from "~/components/AvgRate";
 import  Alert  from "~/components/Alert";
-import { getRateColor } from "~/utils/rateColor"
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {

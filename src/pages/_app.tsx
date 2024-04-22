@@ -26,7 +26,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <div className="container mx-auto flex items-start min-h-screen w-full">
+    <div className="mx-auto flex items-start min-h-screen w-full">
 
     <div className="md:sticky md:top-0 md:left-0">
     <SideBar />
@@ -35,7 +35,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <div className="min-h-screen flex-grow">
 
       <header className="sticky top-0 z-10 border-b bg-gradient-to-b from-[#2e026d] to-[#15162c] pt-2">
-        <h1 className="mb-2 px-4 py-4 sm:py-4 text-center text-4xl sm:text-[5rem] font-extrabold tracking-tight text-white">CommuPlat</h1>
+        <h1 className="mb-2 px-4 py-4 sm:py-5 text-center text-4xl sm:text-[5rem] font-extrabold tracking-tight text-white">CommuPlat</h1>
       </header>
 
       <Component {...pageProps} />
