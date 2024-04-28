@@ -23,6 +23,20 @@ model Community {
     reviews Review[]
 }
 
+model User {
+    id            String    @id @default(cuid())
+    name          String?
+    email         String?   @unique
+    emailVerified DateTime?
+    image         String
+    accounts      Account[]
+    sessions      Session[]
+
+    // Non-Next Auth
+    ratings Rating[]
+    reviews Review[]
+}
+
 model Rating {
     userId      String
     communityId String
@@ -77,20 +91,6 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
     @@index([userId])
-}
-
-model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String
-    accounts      Account[]
-    sessions      Session[]
-
-    // Non-Next Auth
-    ratings Rating[]
-    reviews Review[]
 }
 
 model VerificationToken {
