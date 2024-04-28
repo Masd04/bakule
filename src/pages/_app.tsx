@@ -26,7 +26,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <div className="mx-auto flex items-start min-h-screen w-full">
+    <div className="mx-auto flex items-start min-h-screen w-full bg-gray-100">
 
     <div className="md:sticky md:top-0 md:left-0">
     <SideBar />

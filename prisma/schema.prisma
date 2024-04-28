@@ -29,10 +29,10 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String
+    // Next Auth
     accounts      Account[]
     sessions      Session[]
 
-    // Non-Next Auth
     ratings Rating[]
     reviews Review[]
 }

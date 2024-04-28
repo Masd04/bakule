@@ -77,7 +77,7 @@ export function SideBar () {
         </button>
         
         
-    <nav ref={sidebarRef} id='nav' className={`fixed top-[5.5rem] md:top-0 left-0 z-20 md:h-full py-4 px-4 transition-transform transform ${
+    <nav ref={sidebarRef} id='nav' className={`fixed top-[5.5rem] md:top-0 left-0 z-20 md:h-full py-5 px-4 transition-transform transform ${
         isSidebarOpen ? "translate-x-0" : "-translate-x-full"
     } bg-white shadow-md md:relative md:translate-x-0 md:block`}>
     

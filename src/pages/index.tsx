@@ -41,7 +41,7 @@ const Communities: NextPage = () => {
     
   return (
   <>
-  <div className="bg-gray-100 pt-3">
+  <div className="pt-3">
       <div className="flex items-center justify-between px-4 md:px-6 lg:px-8">
         <header className="flex-grow ml-52">
           <h1 className="text-4xl font-bold text-black text-center bg-gray-100 px-4 pt-2 pb-3">Communities</h1>
