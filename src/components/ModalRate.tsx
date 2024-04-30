@@ -1,3 +1,5 @@
+// components/ModalRate.tsx
+
 import React, {useState} from 'react';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';

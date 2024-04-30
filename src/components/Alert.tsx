@@ -1,3 +1,5 @@
+// src/components/Alert.tsx
+
 import styles from '../styles/style.js'
 
 interface AlertProps {

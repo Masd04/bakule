@@ -1,3 +1,5 @@
+// src/components/AvgRate.tsx
+
 import Image, { StaticImageData } from 'next/image';
 import { star } from "../../public/img";
 import { getRateColor } from "~/utils/rateColor"

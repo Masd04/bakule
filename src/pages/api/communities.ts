@@ -3,7 +3,6 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from '~/server/db';
 
-
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'GET') {
         try {
@@ -14,7 +13,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                   },
                 },
               });
-  
               const communityDetails = await Promise.all(communities.map(async community => {
                 const avgRating = await prisma.rating.aggregate({
                     _avg: {
@@ -24,7 +22,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
                         communityId: community.id
                     }
                 });
-
  return {
                     ...community,
                     ratingsCount: community._count.ratings ?? 0,
