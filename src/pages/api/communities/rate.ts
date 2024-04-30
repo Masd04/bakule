@@ -1,8 +1,7 @@
 // pages/api/communities/rate.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from "../../../server/db"; // Adjust the import path as necessary
-import { getServerAuthSession } from "../../../server/auth"; // Import the session helper
-
+import { prisma } from "~/server/db"; // Adjust the import path as necessary
+import { getServerAuthSession } from "~/server/auth"; // Import the session helper
 
 interface RateRequestBody {
   communityId: string;

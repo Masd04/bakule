@@ -1,6 +1,7 @@
-// pages/api/communities/[id].ts 
+// pages/api/communities/[id].ts
+
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { prisma } from "../../../server/db";
+import { prisma } from "~/server/db";
 
 export default async function handle(req: NextApiRequest, res: NextApiResponse) {
   const { id } = req.query;
@@ -24,8 +25,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       });
 
       if (community) {
-
-        // Calculate average rating for the community
+        // Calculate average rating
         const averageRatingResult = await prisma.rating.aggregate({
           _avg: {
             value: true
