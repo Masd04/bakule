@@ -3,6 +3,7 @@
 import Image, { StaticImageData } from 'next/image';
 import { star } from "../../public/img";
 import { getRateColor } from "~/utils/rateColor"
+import styles from '../styles/style.js'
 
   interface AvgRateProps {
     averageRating: number | string;
@@ -20,7 +21,7 @@ import { getRateColor } from "~/utils/rateColor"
 
     return (
   <>
-  <div className={`${xSpacing} flex justify-center items-center`}>        
+  <div className={`${xSpacing} ${styles.flexCenter}`}>        
   <p className={`${textSize} font-bold ${ratingClass}`}>
     {averageRating ?? "0"}
   </p>

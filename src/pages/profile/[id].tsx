@@ -80,7 +80,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
 
     <GoBack />
     
-    <div className="bg-white rounded-lg shadow-lg border-2 border-gray-200">
+    <div className={`${styles.detailsContainer}`}>
     <div className={`${styles.profileTxt}`}>
     <div className={`${styles.flexCenter} w-1/3 sm:w-full mx-auto`}>
     <Image src={profile?.image ? profile.image : 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'}
@@ -101,7 +101,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
     <div className="mt-5">
     <div className="space-y-2">
           {userRatingsAndReviews.ratingsReviews.map((ratRev, index) => (
-            <div key={index} className="p-4 mb-3 bg-sky-50 border-2 border-gray-300 shadow-lg">
+            <div key={index} className={`p-4 mb-3 ${styles.revCardContainer}`}>
 
               <div className="mb-1 border-b-2 border-gray-300">{ratRev.community && <div className="font-semibold">{ratRev.community.name}</div>}
               </div>
@@ -115,7 +115,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
                 xSpacing="space-x-1"
                />
               </div>
-              <div>{ratRev.review && <div><span className="font-semibold border-b-2 border-gray-300">Review: </span><br />{ratRev.review.content}</div>}
+              <div>{ratRev.review && <div><span className={`${styles.revCardRev}`}>Review: </span><br />{ratRev.review.content}</div>}
               </div>
               
 

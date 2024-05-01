@@ -53,7 +53,7 @@ const CommunityPage: NextPage = () => {
     <>
     <div className="container mx-auto px-6 py-2 mt-2">
 
-    <div className="flex flex-row justify-between">
+    <div className={`${styles.flexRow} justify-between`}>
 
     <GoBack />
     {/* RATE BUTTON */}
@@ -64,12 +64,12 @@ const CommunityPage: NextPage = () => {
     </div>
 
 
-      <div className="bg-white rounded-lg shadow-lg border-2 border-gray-200">
+      <div className={`${styles.detailsContainer}`}>
 
       <div className="flex justify-between">
 
-      <div className="ml-5 my-3 pt-3 w-1/3 sm:w-1/6">
-      {community.imageUrl && (
+        <div className="ml-5 my-3 pt-3 w-1/3 sm:w-1/6">
+        {community.imageUrl && (
           <Image
             src={community.imageUrl}
             alt='some alt'
@@ -107,7 +107,7 @@ const CommunityPage: NextPage = () => {
 
 <div id="reviewCard">
   {community.ratingsReviews.map((item) => (
-    <div key={item.id} className="py-4 bg-sky-50 border-2 border-gray-300 shadow-lg mb-3">
+    <div key={item.id} className={`py-4 mb-3 ${styles.revCardContainer}`}>
       <div className="mx-5">
         <div className="feedback-card">
 
@@ -143,7 +143,7 @@ const CommunityPage: NextPage = () => {
 
           {item.review?.content && (
             <div className="text-lg">
-              <p className="pt-3"><span className="font-semibold border-b-2 border-gray-300">Review: </span><br />{item.review.content}</p>
+              <p className="pt-3"><span className={`${styles.revCardRev}`}>Review: </span><br />{item.review.content}</p>
             </div>
           )}
 

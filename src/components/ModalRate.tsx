@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
+import styles from '../styles/style.js'
 
 interface ModalProps {
   isVisible: boolean;
@@ -55,12 +56,12 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
 
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+    <div className={`${styles.modalContainer} ${styles.flexCenter}`}>
       <form onSubmit={handleSubmit} className="w-[80%] flex flex-col bg-white px-5 pb-5 pt-2 rounded-md shadow-lg">
         
         <div className="flex items-center justify-between">
-          <h2 className="se:text-md xr:text-lg promax:text-xl sm:text-2xl md:text-3xl ml-10 font-bold text-center flex-grow">Rate your community!</h2>
-          <button type="button" className="ml-auto hover:scale-105" onClick={onClose} aria-label="Close">
+          <h2 className={`${styles.rFormTitle} ml-10 flex-grow`}>Rate your community!</h2>
+          <button type="button" className={`${styles.modalClose}`} onClick={onClose} aria-label="Close">
             <Image 
               src={closeButton as StaticImageData}
               alt='Go back button'
@@ -70,9 +71,9 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
           </button>
         </div>
 
-        <div className="flex flex-col space-y-4">
+        <div className={`${styles.flexCol} space-y-4`}>
           <div>
-            <label htmlFor="value1" className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">Rating (1-10)</label>
+            <label htmlFor="value1" className={`${styles.modaLabel}`}>Rating (1-10)</label>
             <input
               type="number"
               id="value1"
@@ -80,25 +81,25 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
               max="10"
               value={ratingValue}
               onChange={(e) => setRatingValue(parseInt(e.target.value))}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className={`${styles.inputStyleR}`}
             />
           </div>
-
+          
           <div>
-            <label htmlFor="value2" className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">Review</label>
+            <label htmlFor="value2" className={`${styles.modaLabel}`}>Review</label>
             <textarea
               id="value2"
               maxLength={200}
               rows={1}
               value={reviewContent}
               onChange={(e) => setReviewContent(e.target.value)}
-              className="bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+              className={`${styles.inputStyleR}`}
               style={{ overflowY: 'hidden', resize: 'none' }}
               onInput={handleInput}
             />
           </div>
 
-          <button type="submit" className="rounded bg-cpblue md:w-[25%] md:mx-auto pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-opacity-90 focus:outline-none focus:ring-0 active:bg-opacity-80">
+          <button type="submit" className={`${styles.modalSub}`}>
             Submit
           </button>
         </div>

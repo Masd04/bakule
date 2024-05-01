@@ -4,6 +4,7 @@ import Image, { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
 import { useSession } from "next-auth/react";
 import { api } from '~/utils/api';
+import styles from '../styles/style.js'
 
 
 
@@ -85,13 +86,13 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
 };
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
+    <div className={`${styles.modalContainer} ${styles.flexCenter}`}>
 
-      <div className="w-[75%] sm:w-[65%] md:w-[55%] lg:w-[45%] flex flex-col bg-white px-5 pb-5 pt-2 rounded-md shadow-lg">
+      <div className={`${styles.formContainer} ${styles.flexCol}`}>
         
       <div className="flex items-center justify-between">
-        <h2 className="se:text-lg xr:text-xl promax:text-xl sm:text-2xl md:text-3xl ml-10 font-bold text-center flex-grow">Request new community</h2>
-        <button className="ml-auto hover:scale-105" onClick={() => onClose() } aria-label="Close">
+        <h2 className={`${styles.formTitle} ml-10 flex-grow`}>Request new community</h2>
+        <button className={`${styles.modalClose}`} onClick={() => onClose() } aria-label="Close">
         <Image 
           src={closeButton as StaticImageData}
           alt='Go back button'
@@ -112,9 +113,9 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
           </div>
         </div>
         ) : (      
-        <form className="flex flex-col space-y-4" onSubmit={sendEmail}>
+        <form className={`${styles.flexCol} space-y-4`} onSubmit={sendEmail}>
           <div>
-            <label htmlFor="value2" className="block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300">Server name:</label>
+            <label htmlFor="value2" className={`${styles.modaLabel}`}>Server name:</label>
             <textarea 
               id="value2" 
               maxLength={50} 
@@ -125,9 +126,7 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
             />
           </div>
 
-          <button type="submit"
-                  className="rounded bg-cpblue md:w-[25%] md:mx-auto pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-opacity-90 focus:outline-none focus:ring-0 active:bg-opacity-80"
-          >
+          <button type="submit" className={`${styles.modalSub}`}>
           {isSubmitting ? 'Sending...' : 'Request'}
           </button>
         </form>

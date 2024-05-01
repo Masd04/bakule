@@ -14,7 +14,9 @@ const SortSelector: React.FC<SortSelectorProps> = ({ setSortOption, setSortOrder
   };
 
   return (
-    <select onChange={handleChange} className="w-[14rem] text-gray-700 pl-2 pb-[0.15rem] bg-gray-300 border-2 border-gray-400 text-center rounded-full">
+    <select onChange={handleChange}
+            className="w-[14rem] text-gray-700 pl-2 pb-[0.15rem] bg-gray-300 border-2 border-gray-400 text-center rounded-full">
+      
       <option value="name:asc">Name Descending</option>
       <option value="name:desc">Name Ascending</option>
       <option value="averageRating:asc">Rating Descending</option>

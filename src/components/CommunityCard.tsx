@@ -21,18 +21,19 @@ export function CommunityCard({ community }: CommunityProps) {
 
     <div className="flex justify-between items-start">
 
-    <div className="flex flex-row">
-    <div className="p-[0.1rem] border-2 rounded-full border-gray-700 mr-2">
+    <div className={`${styles.flexRow}`}>
+
+    <div className={`${styles.logoContainer}`}>
     <Image src={community.imageUrl ?? 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'}
     alt="Discord logo" 
     width={36}
     height={36} />
-
     </div>
     <h5
-      className="text-2xl font-medium leading-tight text-neutral-800">
+      className={`${styles.cardName}`}>
       {community.name}
     </h5>
+    
     </div>
 
     <div>
@@ -48,7 +49,7 @@ export function CommunityCard({ community }: CommunityProps) {
 
     </div>
 
-    <h6 className="my-1 text-lg font-medium leading-tight text-neutral-600">
+    <h6 className={`${styles.cardDesc}`}>
       Description:
     </h6>
     <p className={`${styles.paragraph}`}>
@@ -56,25 +57,18 @@ export function CommunityCard({ community }: CommunityProps) {
     </p>
 
     <div className="flex space-x-20">
-    <h6 className="mb-1 text-lg font-medium leading-tight text-neutral-600">
+    <h6 className={`${styles.cardRatRev}`}>
       Ratings: {community.ratingsCount ?? 0}
     </h6>
     
-{/*     <p className="mb-2 text-base text-neutral-600 dark:text-neutral-200">
-        {community.ratingsCount ?? 0}
-    </p> */}
-    <h6 className="mb-1 text-lg font-medium leading-tight text-neutral-600">
+    <h6 className={`${styles.cardRatRev}`}>
       Reviews: {community.reviewsCount ?? 0}
     </h6>
-
-{/*     <p className="mb-2 text-base text-neutral-600 dark:text-neutral-200">
-      {community.reviewsCount ?? 0}
-    </p> */}
     </div>
     
   </div>
   </div>
   </Link>
   </>
-    ;
+
 }
