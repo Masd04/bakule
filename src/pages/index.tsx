@@ -1,13 +1,14 @@
 //pages/index.tsx
 import type { NextPage } from "next"
 import { CommunityCard } from "~/components/CommunityCard";
+import SortSelector from "~/components/SortSelector";
 import useSWR from 'swr';
 import styles from '../styles/style.js'
 import type { Community } from '../types/types';
 import { useSession } from "next-auth/react";
 import  ModalAdd  from "~/components/ModalAdd";
 import  Alert  from "~/components/Alert";
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -19,17 +20,26 @@ const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
 
 const Communities: NextPage = () => {
 
-  const [showModal, setShowModal ] = useState(false);
-
   const { data: session } = useSession();
+  const [showModal, setShowModal ] = useState(false);
+  
+  const [sortOption, setSortOption] = useState<'name' | 'averageRating'>('name');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
-  if (error) return <Alert message="Failed to load communities." textColor="text-cpred"/>;
-  if (!communities) return <Alert message="Loading..." textColor="text-cpblue"/>;
-
-
+  useEffect(() => {
+    if (communities) {
+      console.log("Sorting by: ", sortOption, sortOrder); // Debugging line
+      communities.sort((a, b) => {
+        const sortValA = sortOption === 'averageRating' ? parseFloat(a.averageRating as string) || 0 : a.name ?? '';
+        const sortValB = sortOption === 'averageRating' ? parseFloat(b.averageRating as string) || 0 : b.name ?? '';
+        return sortOrder === 'asc' ? (sortValA < sortValB ? -1 : 1) : (sortValA > sortValB ? -1 : 1);
+      });
+      console.log("Sorting by: ", sortOption, sortOrder);
+    }
+  }, [sortOption, sortOrder, communities]);
 
   const handleAddButtonClick = () => {
     if (!session) {
@@ -38,15 +48,20 @@ const Communities: NextPage = () => {
       setShowModal(true);
     }
   }
+
+  if (error) return <Alert message="Failed to load communities." textColor="text-cpred"/>;
+  if (!communities) return <Alert message="Loading..." textColor="text-cpblue"/>;
     
   return (
   <>
   <div className="pt-3">
       <div className="flex items-center justify-between px-4 md:px-6 lg:px-8">
         <header className="flex-grow ml-52">
-          <h1 className="text-4xl font-bold text-black text-center bg-gray-100 px-4 pt-2 pb-3">Communities</h1>
-          <div className="flex justify-center py-2 bg-gray-100" id="srch">
-            <input type="text" placeholder="search" className="w-[14rem] bg-gray-300 border-2 border-gray-400 text-center rounded-full"/>
+          <h1 className="text-4xl font-bold text-black text-center bg-white sm:bg-gray-100 px-4 pt-2 pb-3">Communities</h1>
+          <div className="flex justify-center py-2 bg-white sm:bg-gray-100" id="srch">
+            
+          <SortSelector setSortOption={setSortOption} setSortOrder={setSortOrder} />
+
           </div>
         </header>
 
