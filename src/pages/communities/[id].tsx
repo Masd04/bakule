@@ -66,7 +66,7 @@ const CommunityPage: NextPage = () => {
 
       <div className={`${styles.detailsContainer}`}>
 
-      <div className="flex justify-between">
+      <div className={`${styles.flexBtw}`}>
 
         <div className="ml-5 my-3 pt-3 w-1/3 sm:w-1/6">
         {community.imageUrl && (
@@ -79,7 +79,7 @@ const CommunityPage: NextPage = () => {
         )}
         </div>
       
-      <div className="flex justify-between items-center">
+      <div className={`${styles.flexBtw} items-center`}>
       <div className="mr-2 mt-2 sm:mr-10">
       <AvgRate 
         averageRating={community.averageRating ?? 0}
