@@ -12,7 +12,6 @@ import { close, menu  } from "../../public/img";
 interface ExtendedSession {
     user: {
       id: string;
-      name: string;
     }
   }
 
