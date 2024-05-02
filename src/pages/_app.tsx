@@ -21,6 +21,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     <Head>
       <link rel="icon" href="/favicon.ico" />
       <meta name="author" content="David Mašek" />
+      <meta name="google-site-verification" content="0OInA1gqLXccZMLaKvEIbsq-L20K0DdvWmL9YCflj0s" />
     </Head>
     
     <div className="mx-auto flex items-start min-h-screen w-full bg-white sm:bg-gray-100">

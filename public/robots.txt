@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://commuplat.vercel.app
+
+# Sitemaps
+Sitemap: https://commuplat.vercel.app/sitemap.xml
