@@ -58,6 +58,11 @@ const CommunityPage: NextPage = () => {
               content={`${community.name} detail page. Displays community information, average rating and all ratings and reviews for this community.`}
         />
         <link rel="canonical" href={`https://commuplat.vercel.app/communities/${community.id}`} />
+        <meta property="og:title" content="CommuPlat" />
+        <meta property="og:description" content={`${community.name} detail page. Displays community information, average rating and all ratings and reviews for this community.`} />
+        <meta property="og:url" content={`https://commuplat.vercel.app/communities/${community.id}`} />
+        <meta property="og:image" content={`${community.imageUrl}`} />
+        <meta property="og:type" content="website" />
     </Head>
 
     <div className="container mx-auto px-6 py-2 mt-2">

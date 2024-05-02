@@ -78,6 +78,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
         <meta name="description"
               content={`User ${profile?.name}'s profile on CommuPlat platform. Serves for displaying profile information and user's submitted reviews.`}
         />
+        <meta name="robots" content="noindex, nofollow" />
     </Head>
 
     <div className={`container mx-auto px-6 py-2`}>
