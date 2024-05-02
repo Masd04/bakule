@@ -58,7 +58,7 @@ const Communities: NextPage = () => {
   <>
   <Head>
      <title>CommuPlat</title>
-     <meta name="viewport" content="width=device-width" /> 
+     <meta name="viewport" content="width=device-width, initial-scale=0.5" /> 
      <meta name="description"
            content="Home page of the CommuPlat platform. Displays all accesible Discord communities, their average rating and count of ratings and reviews."
      />
