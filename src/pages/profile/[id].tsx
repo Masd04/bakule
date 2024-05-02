@@ -1,4 +1,5 @@
 // src/pages/profile/[id].tsx
+
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import styles from '../../styles/style.js';
@@ -73,7 +74,10 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
 
     return <>
     <Head>
-        <title>{`Profile ${profile?.name}`}</title>
+        <title>{`${profile?.name} - CommuPlat`}</title>
+        <meta name="description"
+              content={`User ${profile?.name}'s profile on CommuPlat platform. Serves for displaying profile information and user's submitted reviews.`}
+        />
     </Head>
 
     <div className={`container mx-auto px-6 py-2`}>

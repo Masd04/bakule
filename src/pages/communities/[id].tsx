@@ -1,15 +1,16 @@
 // pages/communities/[id].tsx
 
 import type { NextPage } from 'next';
+import Head from "next/head";
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import useSWR from 'swr';
-import styles from '../../styles/style.js'
-import Image from 'next/image';
-import type { RatRevCom } from '../../types/types';
-import  GoBack  from "~/components/GoBack";
 import { useSession } from "next-auth/react";
+import styles from '../../styles/style.js'
+import type { RatRevCom } from '../../types/types';
+import Image from 'next/image';
+import  GoBack  from "~/components/GoBack";
 import  ModalRate  from "~/components/ModalRate";
-import { useState } from 'react';
 import AvgRate from "~/components/AvgRate";
 import  Alert  from "~/components/Alert";
 
@@ -51,6 +52,14 @@ const CommunityPage: NextPage = () => {
 
   return (
     <>
+    <Head>
+        <title>{`${community.name} - CommuPlat`}</title>
+        <meta name="description"
+              content={`${community.name} detail page. Displays community information, average rating and all ratings and reviews for this community.`}
+        />
+        <link rel="canonical" href={`https://commuplat.vercel.app/communities/${community.id}`} />
+    </Head>
+
     <div className="container mx-auto px-6 py-2 mt-2">
 
     <div className={`${styles.flexRow} justify-between`}>

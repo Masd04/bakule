@@ -1,15 +1,13 @@
 // src/pages/_app.tsx
+import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
-import { type AppType } from "next/app";
+import Head from "next/head";
 import { api } from "~/utils/api";
 import "~/styles/globals.css";
-import Head from "next/head";
 import { SideBar } from "~/components/SideBar";
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
-
-
 
 
 const MyApp: AppType<{ session: Session | null }> = ({
@@ -20,9 +18,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
     
     <SessionProvider session={session}>
 
-    <Head>
-      <title>CommuPlat</title> 
-      <meta name="description" content="This app allows verified discord users to view and provide rating and reviews of communities they participate in." />
+    <Head> 
       <link rel="icon" href="/favicon.ico" />
     </Head>
     

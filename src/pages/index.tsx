@@ -1,14 +1,16 @@
 //pages/index.tsx
 import type { NextPage } from "next"
-import { CommunityCard } from "~/components/CommunityCard";
-import SortSelector from "~/components/SortSelector";
+import Head from "next/head";
+import React, { useState, useEffect } from 'react';
 import useSWR from 'swr';
+import { useSession } from "next-auth/react";
 import styles from '../styles/style.js'
 import type { Community } from '../types/types';
-import { useSession } from "next-auth/react";
+import { CommunityCard } from "~/components/CommunityCard";
+import SortSelector from "~/components/SortSelector";
 import  ModalAdd  from "~/components/ModalAdd";
 import  Alert  from "~/components/Alert";
-import React, { useState, useEffect } from 'react';
+
 
 
 const fetcher = <T,>(url: string): Promise<T> => fetch(url).then(res => {
@@ -54,6 +56,14 @@ const Communities: NextPage = () => {
     
   return (
   <>
+  <Head>
+     <title>CommuPlat</title> 
+     <meta name="description"
+           content="Home page of the CommuPlat platform. Displays all accesible Discord communities, their average rating and count of ratings and reviews."
+     />
+     <link rel="canonical" href="https://commuplat.vercel.app/" />
+  </Head>
+
   <div className="pt-3">
       <div className="flex items-center justify-between px-4 md:px-6 lg:px-8">
         <header className="flex-grow ml-52">
