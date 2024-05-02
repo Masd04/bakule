@@ -75,6 +75,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
     return <>
     <Head>
         <title>{`${profile?.name} - CommuPlat`}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> 
         <meta name="description"
               content={`User ${profile?.name}'s profile on CommuPlat platform. Serves for displaying profile information and user's submitted reviews.`}
         />
@@ -93,8 +94,8 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
            width={200} 
            height={200} />
     </div>
-    <h1 className={`${styles.flexCenter}`}>{profile?.name}</h1>
-    <h1 className={`${styles.flexCenter} font-light`}>{profile?.email}</h1>
+    <h2 className={`${styles.flexCenter}`}>{profile?.name}</h2>
+    <h2 className={`${styles.flexCenter} font-light`}>{profile?.email}</h2>
     </div>
     </div>
 

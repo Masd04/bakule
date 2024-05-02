@@ -54,10 +54,12 @@ const CommunityPage: NextPage = () => {
     <>
     <Head>
         <title>{`${community.name} - CommuPlat`}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" /> 
         <meta name="description"
               content={`${community.name} detail page. Displays community information, average rating and all ratings and reviews for this community.`}
         />
         <link rel="canonical" href={`https://commuplat.vercel.app/communities/${community.id}`} />
+        <meta name="robots" content="index, follow" />
         <meta property="og:title" content="CommuPlat" />
         <meta property="og:description" content={`${community.name} detail page. Displays community information, average rating and all ratings and reviews for this community.`} />
         <meta property="og:url" content={`https://commuplat.vercel.app/communities/${community.id}`} />
@@ -109,7 +111,7 @@ const CommunityPage: NextPage = () => {
         </div>
         
         <div className="px-6 py-4">
-          <div className="font-bold text-2xl mb-2">{community.name}</div>
+          <h2 className="font-bold text-2xl mb-2">{community.name}</h2>
           <p className="text-gray-700 sm:text-xl">{community.description}</p>
         </div>
 
