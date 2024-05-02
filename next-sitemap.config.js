@@ -1,3 +1,5 @@
+// next-sitemap.js
+
 const fetch = require('node-fetch');
 
 async function fetchPaths(url) {
