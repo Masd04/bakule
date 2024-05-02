@@ -58,13 +58,13 @@ const Communities: NextPage = () => {
   <>
   <Head>
      <title>CommuPlat</title>
-     <meta name="viewport" content="width=device-width, initial-scale=0.5" /> 
+     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
      <meta name="description"
            content="Home page of the CommuPlat platform. Displays all accesible Discord communities, their average rating and count of ratings and reviews."
      />
      <link rel="canonical" href="https://commuplat.vercel.app/" />
-     <meta property="og:title" content="CommuPlat" />
      <meta name="robots" content="index, follow" />
+     <meta property="og:title" content="CommuPlat" />
      <meta property="og:description" content="Home page of the CommuPlat platform. Displays all accesible Discord communities, their average rating and count of ratings and reviews." />
      <meta property="og:url" content="https://commuplat.vercel.app/" />
      <meta property="og:image" content="https://commuplat.vercel.app/favicon.ico" />
