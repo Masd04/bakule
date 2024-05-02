@@ -16,8 +16,8 @@ const SortSelector: React.FC<SortSelectorProps> = ({ communities, setSortedCommu
     if (!communities) return;
 
     const sorted = [...communities].sort((a, b) => {
-      const sortValA = sortOption === 'averageRating' ? parseFloat(a.averageRating as string) || 0 : a.name ?? '';
-      const sortValB = sortOption === 'averageRating' ? parseFloat(b.averageRating as string) || 0 : b.name ?? '';
+      const sortValA = sortOption === 'averageRating' ? parseFloat(a.averageRating as string) ?? 0 : a.name ?? '';
+      const sortValB = sortOption === 'averageRating' ? parseFloat(b.averageRating as string) ?? 0 : b.name ?? '';
       return sortOrder === 'asc' ? (sortValA < sortValB ? -1 : 1) : (sortValA > sortValB ? -1 : 1);
     });
 
