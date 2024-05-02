@@ -39,10 +39,10 @@ export function CommunityCard({ community }: CommunityProps) {
     <div>
     <AvgRate 
         averageRating={community.averageRating ?? 0}
-        textSize="text-3xl sm:text-5xl"
+        textSize="text-5xl"
         imgW={47}
         imgH={30}
-        imgWrapStyle="w-1/3 lg:w-full"
+        imgWrapStyle="w-1/2 lg:w-full"
         xSpacing="space-x-2"
       />
     </div>

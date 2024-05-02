@@ -93,6 +93,7 @@ const Communities: NextPage = () => {
     ))} 
    
 
+    
   </div>
 
   <ModalAdd isVisible={showModal} onClose={() => setShowModal(false)}/>
