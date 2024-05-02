@@ -29,10 +29,10 @@ export function CommunityCard({ community }: CommunityProps) {
     width={36}
     height={36} />
     </div>
-    <h5
+    <h3
       className={`${styles.cardName}`}>
       {community.name}
-    </h5>
+    </h3>
     
     </div>
 
@@ -49,21 +49,21 @@ export function CommunityCard({ community }: CommunityProps) {
 
     </div>
 
-    <h6 className={`${styles.cardDesc}`}>
+    <h4 className={`${styles.cardDesc}`}>
       Description:
-    </h6>
+    </h4>
     <p className={`${styles.paragraph}`}>
       {community.description}
     </p>
 
     <div className="flex space-x-20">
-    <h6 className={`${styles.cardRatRev}`}>
+    <h4 className={`${styles.cardRatRev}`}>
       Ratings: {community.ratingsCount ?? 0}
-    </h6>
+    </h4>
     
-    <h6 className={`${styles.cardRatRev}`}>
+    <h4 className={`${styles.cardRatRev}`}>
       Reviews: {community.reviewsCount ?? 0}
-    </h6>
+    </h4>
     </div>
     
   </div>
