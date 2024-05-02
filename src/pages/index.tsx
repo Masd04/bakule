@@ -25,23 +25,14 @@ const Communities: NextPage = () => {
   const { data: session } = useSession();
   const [showModal, setShowModal ] = useState(false);
   
-  const [sortOption, setSortOption] = useState<'name' | 'averageRating'>('name');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
+  const [sortedCommunities, setSortedCommunities] = useState<Community[]>([]);
 
   // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
   useEffect(() => {
-    if (communities) {
-      console.log("Sorting by: ", sortOption, sortOrder); // Debugging line
-      communities.sort((a, b) => {
-        const sortValA = sortOption === 'averageRating' ? parseFloat(a.averageRating as string) || 0 : a.name ?? '';
-        const sortValB = sortOption === 'averageRating' ? parseFloat(b.averageRating as string) || 0 : b.name ?? '';
-        return sortOrder === 'asc' ? (sortValA < sortValB ? -1 : 1) : (sortValA > sortValB ? -1 : 1);
-      });
-      console.log("Sorting by: ", sortOption, sortOrder);
-    }
-  }, [sortOption, sortOrder, communities]);
+    setSortedCommunities(communities || []);
+  }, [communities]);
 
   const handleAddButtonClick = () => {
     if (!session) {
@@ -77,7 +68,7 @@ const Communities: NextPage = () => {
           <h2 className="text-4xl font-bold text-black text-center bg-white sm:bg-gray-100 px-4 pt-2 pb-3">Communities</h2>
           <div className="flex justify-center py-2 bg-white sm:bg-gray-100" id="srch">
             
-          <SortSelector setSortOption={setSortOption} setSortOrder={setSortOrder} />
+          <SortSelector communities={communities} setSortedCommunities={setSortedCommunities} />
 
           </div>
         </header>
@@ -88,7 +79,7 @@ const Communities: NextPage = () => {
         </button>
       </div>
    
-    {communities.map((community: Community) => (
+     {sortedCommunities.map((community: Community) => (
                 <CommunityCard key={community.id} community={community} />
     ))} 
    
