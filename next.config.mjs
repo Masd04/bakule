@@ -9,7 +9,7 @@ const config = {
   reactStrictMode: true,
 
   images: {
-    domains: ['cdn.discordapp.com', 'assets-global.website-files.com'],
+    domains: ['cdn.discordapp.com', 'assets-global.website-files.com', 'encrypted-tbn0.gstatic.com'],
   },
 
   /**
