@@ -1,6 +1,7 @@
 // components/ModalRate.tsx
 
 import React, {useState} from 'react';
+import { mutate } from 'swr';
 import Image from 'next/image';
 import type { StaticImageData } from 'next/image';
 import { closeButton  } from "../../public/img";
@@ -48,6 +49,7 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
       })
       .then((_data) => { // Prefixed 'data' with an underscore to indicate it's intentionally unused
         onClose(); // Close the modal on success
+        mutate(`/api/communities/${communityId}`);
       })
       .catch((error) => {
         console.error('Failed to submit rating:', error);
