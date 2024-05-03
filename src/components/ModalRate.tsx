@@ -34,7 +34,7 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
       content: reviewContent,
     };
 
-    fetch('/api/communities/rate', {
+    void fetch('/api/communities/rate', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -49,7 +49,7 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
       })
       .then((_data) => { // Prefixed 'data' with an underscore to indicate it's intentionally unused
         onClose(); // Close the modal on success
-        mutate(`/api/communities/${communityId}`);
+        void mutate(`/api/communities/${communityId}`);
       })
       .catch((error) => {
         console.error('Failed to submit rating:', error);
