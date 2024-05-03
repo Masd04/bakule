@@ -1,6 +1,6 @@
 const styles = {    
 // Text
-    paragraph: "mb-2 text-2xl sm:text-base text-neutral-600 dark:text-neutral-200",
+    paragraph: "mb-2 text-2xl sm:text-base text-neutral-600",
     profileTxt: "text-xl font-semibold space-y-2 my-3",
 // Flex
     flexCenter: "flex justify-center items-center",
@@ -18,7 +18,7 @@ const styles = {
 // Modal
     modalContainer: "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm",
     modalClose: "ml-auto hover:scale-105",
-    modaLabel: "block mb-2 text-sm md:text-lg font-medium text-gray-900 dark:text-gray-300",
+    modaLabel: "block mb-2 text-sm md:text-lg font-medium text-gray-900",
     modalSub: "rounded bg-cpblue md:w-[25%] md:mx-auto pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-opacity-90 focus:outline-none focus:ring-0 active:bg-opacity-80",
     // Add
     formContainer: "w-[75%] sm:w-[65%] md:w-[55%] lg:w-[45%] bg-white px-5 pb-5 pt-2 rounded-md shadow-lg",
