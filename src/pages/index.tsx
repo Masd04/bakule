@@ -31,7 +31,7 @@ const Communities: NextPage = () => {
   const { data: communities, error } = useSWR<Community[]>('/api/communities', fetcher);
 
   useEffect(() => {
-    setSortedCommunities(communities || []);
+    setSortedCommunities(communities ?? []);
   }, [communities]);
 
   const handleAddButtonClick = () => {
