@@ -11,7 +11,7 @@ const styles = {
     rateButton: "w-auto h-12 px-5 bg-cpblue rounded-md text-white font-bold hover:scale-105",
     addButton: "w-52 h-12 px-5 ml-4 bg-cpblue rounded-md text-white font-bold hover:scale-105",
 // CommunityCard
-    logoContainer: "p-[0.45rem] border-2 rounded-full border-gray-700 mr-2",
+    logoContainer: "p-[0.5rem] border-2 rounded-full border-gray-700 mr-2",
     cardName: "text-4xl sm:text-2xl font-medium leading-tight text-neutral-800",
     cardDesc: "my-1 text-3xl sm:text-lg font-medium leading-tight text-neutral-600",
     cardRatRev: "mb-1 text-3xl sm:text-lg font-medium leading-tight text-neutral-600",
