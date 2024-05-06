@@ -1,4 +1,5 @@
 // src\server\api\routers\emailRouter.ts
+
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { z } from "zod";
 import nodemailer from 'nodemailer';
@@ -8,13 +9,12 @@ import { ensureEnvVariable } from '../../../utils/envHelper';
 export const emailRouter = createTRPCRouter({
   sendEmail: publicProcedure.input(z.object({
     serverName: z.string(),
-    userId: z.string(), // Assuming you send the user ID to fetch additional data if needed
+    userId: z.string(),
   })).mutation(async ({ input, ctx }) => {
 
-    // Fetch additional profile data if necessary
     const userProfile = await ctx.prisma.user.findUnique({
       where: { id: input.userId },
-      select: { name: true, email: true } // Fetch only necessary fields
+      select: { name: true, email: true }
     });
 
     if (!userProfile) {
@@ -22,7 +22,6 @@ export const emailRouter = createTRPCRouter({
     }
 
     const transporter = nodemailer.createTransport({
-        // Example using Gmail
         service: 'gmail',
         auth: {
           user: ensureEnvVariable('GMAIL_USER'),

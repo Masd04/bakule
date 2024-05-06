@@ -25,7 +25,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       });
 
       if (community) {
-        // Calculate average rating
         const averageRatingResult = await prisma.rating.aggregate({
           _avg: {
             value: true
@@ -62,7 +61,6 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
       res.status(500).json({ message: 'Error retrieving community', error });
     }
   } else {
-    // Handle any other HTTP methods if necessary
     res.setHeader('Allow', ['GET']);
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }

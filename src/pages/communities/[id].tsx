@@ -72,7 +72,7 @@ const CommunityPage: NextPage = () => {
     <div className={`${styles.flexRow} justify-between`}>
 
     <GoBack />
-    {/* RATE BUTTON */}
+
     <button className={`${styles.rateButton}`} onClick={handleRateButtonClick}>
       Rate this community
     </button>

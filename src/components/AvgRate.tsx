@@ -15,8 +15,7 @@ import styles from '../styles/style.js'
   }
 
   const AvgRate: React.FC<AvgRateProps> = ({ averageRating, imgW, imgH, textSize, imgWrapStyle, xSpacing }) => {
-    // Colored Rating Values
-    // Only call getRateColor if averageRating is a number
+ 
   const ratingClass = typeof averageRating === 'number' ? getRateColor(averageRating) : '';
 
     return (

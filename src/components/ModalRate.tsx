@@ -47,8 +47,8 @@ const ModalRate: React.FC<ModalProps> = ({ isVisible, onClose, communityId }) =>
         }
         return response.json();
       })
-      .then((_data) => { // Prefixed 'data' with an underscore to indicate it's intentionally unused
-        onClose(); // Close the modal on success
+      .then((_data) => { 
+        onClose();
         void mutate(`/api/communities/${communityId}`);
       })
       .catch((error) => {

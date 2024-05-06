@@ -12,7 +12,6 @@ import { env } from "~/env.mjs";
 import { type GetServerSidePropsContext } from "next";
 
 
-/* Module augmentation for `next-auth` types. Allows us to add custom properties to the `session` object and keep type safety.*/
 declare module "next-auth" {
   interface Session extends DefaultSession {
     user: DefaultSession["user"] & {
@@ -21,7 +20,6 @@ declare module "next-auth" {
   }
 }
 
-/* Options for NextAuth.js used to configure adapters, providers, callbacks, etc. */
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
@@ -42,12 +40,6 @@ export const authOptions: NextAuthOptions = {
   },
 };
 
-/* Most other providers require a bit more work than the Discord provider. For example, the
-   GitHub provider requires you to add the `refresh_token_expires_in` field to the Account
-   model. */
-
-
-/* Wrapper for `getServerSession` so that you don't need to import the `authOptions` in every file. */
 export const getServerAuthSession = (ctx: {
   req: GetServerSidePropsContext["req"];
   res: GetServerSidePropsContext["res"];

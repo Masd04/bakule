@@ -8,7 +8,6 @@ import Image from 'next/image';
 import { close, menu  } from "../../public/img";
 
 
-// Extend the Session type with the user properties you expect to use
 interface ExtendedSession {
     user: {
       id: string;
@@ -16,27 +15,21 @@ interface ExtendedSession {
   }
 
 
-
 export function SideBar () {
 
-     // PROFILE
      const { data: session } = useSession() as { data: ExtendedSession };
      const user = session?.user;
 
-
-    // MOBILE NAV
     const [isSidebarOpen, setIsSidebarOpen
     ] = useState(false);
 
 
     const toggleSidebar = (event: React.MouseEvent<HTMLButtonElement>) => {
         
-        event.stopPropagation(); // Prevent event bubbling
+        event.stopPropagation(); 
         setIsSidebarOpen(!isSidebarOpen);
-        // console.log(isSidebarOpen);
     };
     
-    // CLOSE NAVBAR AFTER CLICKING INACTIVE LINK
     const router = useRouter();
 
     const handleLinkClick = (path: string) => {
@@ -46,7 +39,6 @@ export function SideBar () {
     }
     };
 
-    // FOR CLOSING SIDEBAR AFTER CLICKING OUTSIDE OF IT
     const sidebarRef = useRef<HTMLDivElement>(null);
     const toggleButtonRef = useRef<HTMLButtonElement>(null);
 

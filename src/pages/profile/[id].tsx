@@ -24,7 +24,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   console.log("Session Details:", session);
   console.log("Requested Profile ID:", id);
 
-  // If there is no session, or the session user's ID does not match the profile being accessed, redirect to the homepage.
   if (!session || session.user.id !== id) {
     console.log("Authorization failure. Session missing or user ID mismatch.");
     return {
@@ -67,7 +66,6 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
         return <Alert message="Loading..." textColor="text-cpblue" />;
       }
     
-      // Combined error state
       if (isErrorProfile || isErrorRatingsReviews) {
         return <Alert message="Failed to load profile." textColor="text-cpred" />;
       }
@@ -124,8 +122,6 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
               <div>{ratRev.review && <div><span className={`${styles.revCardRev}`}>Review: </span><br />{ratRev.review.content}</div>}
               </div>
               
-
-
             </div>
           ))}
 

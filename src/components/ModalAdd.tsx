@@ -68,15 +68,13 @@ const ModalAdd: React.FC<ModalProps> = ({ isVisible, onClose }) => {
         setTimeout(() => {
           setEmailSent(false);
           onClose();
-        }, 1500); // Show the success message for 3 seconds
+        }, 1500);
       },
       onError: (error) => {
-        // Handle the error state
         console.error('Failed to send email :( : ', error);
         alert('Failed to send email: ' + error.message);
       },
       onSettled: () => {
-        // This will be called whether the mutation is successful or fails
         setIsSubmitting(false);
       },
     });

@@ -6,18 +6,15 @@ type ApiResponse = {
     paths: string[];
   };
   
-  // Extend the NextApiResponse with ApiResponse type -> type safety
   export default async function handler(
     req: NextApiRequest, 
     res: NextApiResponse<ApiResponse | { message: string }>
   ) {
       try {
-          // Fetch community IDs using Prisma
           const communities: Community[] = await prisma.community.findMany({
-              select: { id: true } // Ensures only IDs are fetched, improving performance
+              select: { id: true }
           });
   
-          // Map the communities to create paths
           const paths: string[] = communities.map(community => `/communities/${community.id}`);
           res.status(200).json({ paths });
           
