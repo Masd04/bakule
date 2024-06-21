@@ -49,7 +49,7 @@ const Communities: NextPage = () => {
   <>
   <Head>
      <title>CommuPlat</title>
-     <meta name="viewport" content="width=device-width, initial-scale=0.5" /> 
+     <meta name="viewport" content="width=device-width, initial-scale=1" /> 
      <meta name="description"
            content="Home page of the CommuPlat platform. Displays all accesible Discord communities, their average rating and count of ratings and reviews."
      />
@@ -63,8 +63,11 @@ const Communities: NextPage = () => {
   </Head>
 
   <div className="pt-3">
-      <div className="flex items-center justify-between px-4 md:px-6 lg:px-8">
-        <header className="flex-grow ml-52">
+
+    
+
+      <div className="sm:flex sm:flex-row sm:items-center sm:justify-between flex flex-col items-center px-4 md:px-6 lg:px-8">
+        <header className="sm:flex-grow sm:ml-52">
           <h2 className="text-4xl font-bold text-black text-center bg-white sm:bg-gray-100 px-4 pt-2 pb-3">Communities</h2>
           <div className="flex justify-center py-2 bg-white sm:bg-gray-100" id="srch">
             
@@ -74,7 +77,7 @@ const Communities: NextPage = () => {
         </header>
 
         <button
-          className={`${styles.addButton}`} onClick={handleAddButtonClick}>
+          className={`${styles.addButton} `} onClick={handleAddButtonClick}>
           Add new community
         </button>
       </div>
@@ -84,12 +87,39 @@ const Communities: NextPage = () => {
     ))} 
    
 
-    
+   
+
   </div>
 
   <ModalAdd isVisible={showModal} onClose={() => setShowModal(false)}/>
 
+{/* <div className="pt-3">
+<div className="flex items-center justify-between px-4 md:px-6 lg:px-8">
+  <header className="flex-grow ml-52">
+    <h2 className="text-4xl font-bold text-black text-center bg-white sm:bg-gray-100 px-4 pt-2 pb-3">Communities</h2>
+    <div className="flex justify-center py-2 bg-white sm:bg-gray-100" id="srch">
+      
+    <SortSelector communities={communities} setSortedCommunities={setSortedCommunities} />
+
+    </div>
+  </header>
+
+  <button
+    className={`${styles.addButton}`} onClick={handleAddButtonClick}>
+    Add new community
+  </button>
+</div>
+
+{sortedCommunities.map((community: Community) => (
+          <CommunityCard key={community.id} community={community} />
+))} 
+
+
+
+</div> */}
   </>
+
+
 
 )}
 

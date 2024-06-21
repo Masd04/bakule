@@ -26,8 +26,8 @@ export function CommunityCard({ community }: CommunityProps) {
     <div className={`${styles.logoContainer}`}>
     <Image src={community.imageUrl ?? 'https://assets-global.website-files.com/6257adef93867e50d84d30e2/636e0a69f118df70ad7828d4_icon_clyde_blurple_RGB.svg'}
     alt="Discord logo" 
-    width={36}
-    height={36} />
+    width={30}
+    height={30} />
     </div>
     <h3
       className={`${styles.cardName}`}>
@@ -36,11 +36,11 @@ export function CommunityCard({ community }: CommunityProps) {
     
     </div>
 
-    <div>
+    <div className="pl-2">
     <AvgRate 
         averageRating={community.averageRating ?? 0}
-        textSize="text-5xl"
-        imgW={47}
+        textSize="text-4xl sm:text-5xl"
+        imgW={35}
         imgH={30}
         imgWrapStyle="w-1/2 lg:w-full"
         xSpacing="space-x-2"

@@ -1,6 +1,6 @@
 const styles = {    
 // Text
-    paragraph: "mb-2 text-2xl sm:text-base text-neutral-600",
+    paragraph: "mb-2 text-xl sm:text-base text-neutral-600",
     profileTxt: "text-xl font-semibold space-y-2 my-3",
 // Flex
     flexCenter: "flex justify-center items-center",
@@ -9,12 +9,12 @@ const styles = {
     flexRow: "flex flex-row",
 // Buttons
     rateButton: "w-auto h-12 px-5 bg-cpblue rounded-md text-white font-bold hover:scale-105",
-    addButton: "w-52 h-12 px-5 ml-4 bg-cpblue rounded-md text-white font-bold hover:scale-105",
+    addButton: "w-52 h-12 m-3 px-5 bg-cpblue rounded-md text-white font-bold hover:scale-105",
 // CommunityCard
-    logoContainer: "p-[0.5rem] border-2 rounded-full border-gray-700 mr-2",
-    cardName: "text-4xl sm:text-2xl font-medium leading-tight text-neutral-800",
-    cardDesc: "my-1 text-3xl sm:text-lg font-medium leading-tight text-neutral-600",
-    cardRatRev: "mb-1 text-3xl sm:text-lg font-medium leading-tight text-neutral-600",
+    logoContainer: "max-h-12 p-[0.5rem] border-2 rounded-full border-gray-700 mr-2",
+    cardName: "text-3xl sm:text-2xl font-medium leading-tight text-neutral-800",
+    cardDesc: "my-1 text-2xl sm:text-lg font-medium leading-tight text-neutral-600",
+    cardRatRev: "mb-1 text-xl sm:text-lg font-medium leading-tight text-neutral-600",
 // Modal
     modalContainer: "fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm",
     modalClose: "ml-auto hover:scale-105",
