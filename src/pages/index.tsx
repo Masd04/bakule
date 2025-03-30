@@ -1,4 +1,4 @@
-//pages/index.tsx
+// src/pages/index.tsx
 import type { NextPage } from "next"
 import Head from "next/head";
 import React, { useState, useEffect } from 'react';

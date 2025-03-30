@@ -1,4 +1,4 @@
-// pages/api/communities/rate.ts
+// src/pages/api/communities/rate.ts
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { prisma } from "~/server/db"; 
 import { getServerAuthSession } from "~/server/auth"; 

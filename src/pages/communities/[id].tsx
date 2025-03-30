@@ -1,4 +1,4 @@
-// pages/communities/[id].tsx
+// src/pages/communities/[id].tsx
 
 import type { NextPage } from 'next';
 import Head from "next/head";
