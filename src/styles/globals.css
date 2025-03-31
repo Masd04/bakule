@@ -2,7 +2,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,900;1,900&display=swap');
 
 @tailwind base;
-@tailwind components;
 @tailwind utilities;
 
 h1, h2, h3, button, #srch, #nav, #profilePic, #star, #sentMessage, #alert, #inputFail {
