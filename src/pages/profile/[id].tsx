@@ -104,7 +104,7 @@ const ProfilePage: NextPage<ProfilePageProps> = ({ id, errorMessage }) => {
 
     <div className="mt-5">
     <div className="space-y-2">
-          {userRatingsAndReviews.ratingsReviews.map((ratRev, index) => (
+          {userRatingsAndReviews?.ratingsReviews.map((ratRev, index) => (
             <div key={index} className={`p-4 mb-3 ${styles.revCardContainer}`}>
 
               <div className="mb-1 border-b-2 border-gray-300">{ratRev.community && <div className="font-semibold">{ratRev.community.name}</div>}

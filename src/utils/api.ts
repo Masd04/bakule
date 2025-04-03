@@ -15,24 +15,23 @@ const getBaseUrl = () => {
 
 
 export const api = createTRPCNext<AppRouter>({
-  config() {
-    return {
-      transformer: superjson,
+    config() {
+        return {
+            links: [
+                loggerLink({
+                    enabled: (opts) => process.env.NODE_ENV === "development" ||
+                        (opts.direction === "down" && opts.result instanceof Error),
+                }),
+                httpBatchLink({
+                    url: `${getBaseUrl()}/api/trpc`,
+                    transformer: superjson,
+                }),
+            ],
+        };
+    },
 
-      links: [
-        loggerLink({
-          enabled: (opts) =>
-            process.env.NODE_ENV === "development" ||
-            (opts.direction === "down" && opts.result instanceof Error),
-        }),
-        httpBatchLink({
-          url: `${getBaseUrl()}/api/trpc`,
-        }),
-      ],
-    };
-  },
-
-  ssr: false,
+    ssr: false,
+    transformer: superjson
 });
 
 export type RouterInputs = inferRouterInputs<AppRouter>;
